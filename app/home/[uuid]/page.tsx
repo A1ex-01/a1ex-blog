@@ -4,9 +4,9 @@ import { getPosts } from "@/services/common";
 import { IPost } from "@/services/types";
 import { notFound, redirect } from "next/navigation";
 
-export default async function HomeDetail({ params: { uuid } }: { paranms: { uuid: string } }) {
-  if (uuid == 1) redirect("/home");
-  if (Number(uuid) != uuid) notFound();
+export default async function HomeDetail({ params: { uuid } }: { params: { uuid: string } }) {
+  if (+uuid === 1) redirect("/home");
+  if (Number(uuid) != +uuid) notFound();
   const getPostList = async () => {
     const res = await getPosts({
       current: +uuid,
