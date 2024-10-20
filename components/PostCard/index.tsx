@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 // import TagIcon from '@/assets/icon/tag.svg'
 import Link from "next/link";
 export default function PostCard({ post }: { post: IPost }) {
-  console.log("🚀 ~ PostCard ~ post:", post);
   return (
     <div key={post.id} className={"flex items-center"}>
       <div className="w-full">

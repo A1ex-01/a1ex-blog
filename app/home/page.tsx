@@ -13,7 +13,6 @@ export default async function Home() {
     return res;
   };
   const res = await getPostList();
-  console.log("🚀 ~ Home ~ res?.success:", res?.success);
 
   if (!res?.success) return notFound();
   const {
