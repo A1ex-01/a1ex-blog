@@ -16,7 +16,6 @@ import { default as Link } from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LogoIcon } from "../icons";
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface NavProps {}
 
 export default function Nav(props: NavProps) {
