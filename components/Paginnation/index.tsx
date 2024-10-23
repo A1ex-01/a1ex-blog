@@ -22,7 +22,7 @@ export default function Pagination({ current, pageSize, total }: PaginationProps
       <NextUIPagination
         renderItem={({ page }) => {
           return (
-            <div className=" flex gap-2 items-center">
+            <div className=" flex gap-2 items-center" key={page}>
               <Button
                 isIconOnly
                 key={page}

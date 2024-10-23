@@ -1,0 +1,12 @@
+{
+  "Basic": {
+    "Categories": "카테고리",
+    "Home": "집",
+    "Tags": "태그",
+    "Login": "로그인"
+  },
+  "LocaleSwitcher": {
+    "label": "언어 변경",
+    "locale": "{locale, select, zh {🇨🇳 简体中文} tw {🇭ү 繁體中文} en {🇺🇸 English} fr {🇫🇷 Français} ja {🇯🇵 日本語} ko {🇰🇷 한국어} es {🇪🇸 Español} \nde {🇩🇪 Deutsch} pt {🇧🇷 Português} ar {🇦🇪 العربية} other {알 수 없음}}"
+  }
+}
