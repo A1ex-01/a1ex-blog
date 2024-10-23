@@ -11,7 +11,7 @@ export const siteConfig = {
       name: "首页",
       icon: HomeIcon,
       path: "/home",
-      keyword: "home"
+      keyword: "Home"
     },
     // {
     //   name: "归档",
@@ -29,13 +29,13 @@ export const siteConfig = {
       name: "分类",
       icon: CategoryIcon,
       path: "/categories",
-      keyword: "category"
+      keyword: "Categories"
     },
     {
       name: "标签",
       icon: TagIcon,
       path: "/tags",
-      keyword: "tag"
+      keyword: "Tags"
     }
     // {
     //   name: "友链",

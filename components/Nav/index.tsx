@@ -1,5 +1,6 @@
 "use client";
 import { siteConfig } from "@/config/site";
+import { Link } from "@/lib/navigation";
 import { getActive } from "@/utils";
 import {
   Button,
@@ -11,16 +12,19 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle
 } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { default as Link } from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LogoIcon } from "../icons";
+import { LocaleSwitcher } from "../localeSwitcher";
 interface NavProps {}
 
 export default function Nav(props: NavProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("Basic");
+
   return (
     <Navbar isMenuOpen={isMenuOpen} maxWidth="xl" isBordered>
       {/* {siteConfig.navItems.map((item) => (
@@ -51,7 +55,7 @@ export default function Nav(props: NavProps) {
               as={Link}
               startContent={<Image src={item.icon} alt={item.name} width={18} />}
             >
-              {item.name}
+              {t(item.keyword)}
             </Button>
           </NavbarItem>
         ))}
@@ -59,14 +63,17 @@ export default function Nav(props: NavProps) {
 
       <NavbarContent justify="end">
         <NavbarItem className="lg:flex">
-          <Button color="primary">Login</Button>
+          <LocaleSwitcher />
+        </NavbarItem>
+        <NavbarItem className="lg:flex">
+          <Button color="primary">{t("Login")}</Button>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
         {siteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href="#">
+            <Link className="w-full" href={item.path}>
               {item.name}
             </Link>
           </NavbarMenuItem>
