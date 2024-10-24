@@ -1,7 +1,8 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { Link } from "@/lib/navigation";
+import { getPathname, Link } from "@/lib/navigation";
 import { getActive } from "@/utils";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import {
   Button,
   Navbar,
@@ -66,7 +67,25 @@ export default function Nav(props: NavProps) {
           <LocaleSwitcher />
         </NavbarItem>
         <NavbarItem className="lg:flex">
-          <Button color="primary">{t("Login")}</Button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </NavbarItem>
+        <NavbarItem className="lg:flex">
+          <SignedOut>
+            <SignInButton
+              mode="modal"
+              forceRedirectUrl={getPathname({ href: "/home", locale: "en" })}
+            >
+              <Button
+                color="primary"
+                className="w-full"
+                // onClick={() => setShowSignInModal(true)}
+              >
+                {t("Login")}
+              </Button>
+            </SignInButton>
+          </SignedOut>
         </NavbarItem>
       </NavbarContent>
 

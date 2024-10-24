@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/localizations": "^3.4.0",
+    "@clerk/nextjs": "^6.0.1",
     "@nextui-org/react": "^2.4.2",
     "@tabler/icons-react": "^3.20.0",
     "clsx": "^2.1.1",

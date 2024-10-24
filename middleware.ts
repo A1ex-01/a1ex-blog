@@ -1,16 +1,15 @@
+import { clerkMiddleware } from "@clerk/nextjs/server";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, locales } from "./config/lng";
-
-export const config = {
-  matcher: ["/", "/(zh|en)/:path*", "/((?!static|.*\\..*|_next).*)"] // Run middleware on API routes],
-};
 
 const nextIntlMiddleware = createMiddleware({
   defaultLocale,
   locales
 });
 
-export default async (req) => {
+export default clerkMiddleware(async (auth, req) => {
+  const { userId, redirectToSignIn } = auth();
+  console.log("🚀 ~ clerkMiddleware ~ userId, redirectToSignIn:", userId, redirectToSignIn);
   const { nextUrl } = req;
   const isApi = nextUrl.pathname.startsWith("/api/");
 
@@ -18,4 +17,8 @@ export default async (req) => {
     return;
   }
   return nextIntlMiddleware(req);
+});
+
+export const config = {
+  matcher: ["/", "/(zh|en)/:path*", "/((?!static|.*\\..*|_next).*)"] // Run middleware on API routes],
 };
