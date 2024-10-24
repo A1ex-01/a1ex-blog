@@ -8,6 +8,7 @@ export default getRequestConfig(async ({ locale }) => {
   if (!locales.includes(locale as any)) notFound();
 
   return {
+    timeZone: "Asia/Shanghai",
     messages: (
       await (locale === "en"
         ? // When using Turbopack, this will enable HMR for `en`

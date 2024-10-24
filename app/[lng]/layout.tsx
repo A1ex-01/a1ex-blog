@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import Providers from "@/providers";
+import { currentUser } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import localFont from "next/font/local";
@@ -30,7 +31,8 @@ export default async function RootLayout({
 }>) {
   unstable_setRequestLocale(lng);
   const dicts = await getMessages(lng);
-  console.log("🚀 ~ dicts:", dicts);
+  const user = await currentUser();
+  console.log("🚀 ~ user:", user);
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
