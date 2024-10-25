@@ -3,7 +3,8 @@
     "Home": "Home",
     "Categories": "Categories",
     "Tags": "Tags",
-    "Login": "Login"
+    "Login": "Login",
+    "Tools": "Tools"
   },
   "LocaleSwitcher": {
     "label": "Change language",

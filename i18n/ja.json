@@ -3,7 +3,8 @@
     "Categories": "カテゴリー",
     "Home": "家",
     "Tags": "タグ",
-    "Login": "ログイン"
+    "Login": "ログイン",
+    "Tools": "ツール"
   },
   "LocaleSwitcher": {
     "label": "言語を変更する",

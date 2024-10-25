@@ -27,7 +27,7 @@ export default function Nav(props: NavProps) {
   const t = useTranslations("Basic");
 
   return (
-    <Navbar isMenuOpen={isMenuOpen} maxWidth="xl" isBordered>
+    <Navbar isMenuOpen={isMenuOpen} maxWidth="lg" isBordered>
       {/* {siteConfig.navItems.map((item) => (
         <NavbarMenuItem key={item.name} isActive={item.path === pathname}>
           <Link href={item.path}>{item.name}</Link>

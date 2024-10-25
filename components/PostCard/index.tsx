@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import { IPost } from "@/services/types";
+import { Chip } from "@nextui-org/react";
 import dayjs from "dayjs";
 // import CategoryIcon from '@/assets/icon/category.svg'
 // import TagIcon from '@/assets/icon/tag.svg'
@@ -14,6 +15,7 @@ export default function PostCard({ post }: { post: IPost }) {
             <time className="text-sm text-font-sub-color" dateTime={post.createdAt}>
               {dayjs(post.createdAt).format("YYYY-MM-DD HH:mm")}
             </time>
+            <Chip>{post.category?.name}</Chip>
           </div>
           <Link
             href={`/post/${post.id}`}

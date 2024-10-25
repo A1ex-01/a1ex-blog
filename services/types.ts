@@ -13,6 +13,13 @@ export interface IPost {
   deletedAt: string;
   userDetail: IUser;
   category: ICategory;
+  detail: IPostDetail;
+}
+
+export interface IPostDetail {
+  content_md: string;
+  id: string;
+  article_id: string;
 }
 
 export interface ITag {
