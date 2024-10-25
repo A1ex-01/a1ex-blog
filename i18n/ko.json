@@ -3,7 +3,8 @@
     "Categories": "카테고리",
     "Home": "집",
     "Tags": "태그",
-    "Login": "로그인"
+    "Login": "로그인",
+    "Tools": "도구"
   },
   "LocaleSwitcher": {
     "label": "언어 변경",

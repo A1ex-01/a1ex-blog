@@ -39,7 +39,7 @@ export default async function RootLayout({
         <Providers lng={lng} dicts={dicts}>
           <div className="wrapper h-screen w-screen overflow-y-scroll">
             <Nav />
-            <div className="max-w-[1280px] mx-auto ">{children}</div>
+            <div className=" mx-auto ">{children}</div>
             <Footer />
           </div>
         </Providers>

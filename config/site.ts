@@ -36,6 +36,12 @@ export const siteConfig = {
       icon: TagIcon,
       path: "/tags",
       keyword: "Tags"
+    },
+    {
+      name: "工具",
+      icon: TagIcon,
+      path: "/tools",
+      keyword: "Tools"
     }
     // {
     //   name: "友链",

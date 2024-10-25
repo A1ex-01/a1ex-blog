@@ -3,7 +3,8 @@
     "Categories": "类别",
     "Home": "家",
     "Tags": "标签",
-    "Login": "登录"
+    "Login": "登录",
+    "Tools": "工具"
   },
   "LocaleSwitcher": {
     "label": "更改语言",
