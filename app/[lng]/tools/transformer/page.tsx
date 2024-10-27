@@ -57,14 +57,7 @@ export default function Tools() {
         <div className="right flex-1">
           <div className="top border border-divider p-2">TypeScript</div>
           <div className="edit">
-            <CodeMirror
-              readOnly
-              language="typescript"
-              value={tsValue}
-              onChange={(value) => {
-                setValue(value);
-              }}
-            />
+            <CodeMirror readOnly language="typescript" value={tsValue} onChange={(value) => {}} />
           </div>
         </div>
       </main>
