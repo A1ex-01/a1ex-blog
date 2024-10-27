@@ -32,9 +32,12 @@ export default async function RootLayout({
   unstable_setRequestLocale(lng);
   const dicts = await getMessages(lng);
   const user = await currentUser();
-  console.log("🚀 ~ user:", user);
+  console.log("🚀 ~ user:", user?.firstName);
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers lng={lng} dicts={dicts}>
           <div className="wrapper h-screen w-screen overflow-y-scroll">

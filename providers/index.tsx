@@ -1,4 +1,5 @@
 "use client";
+import { timeZone } from "@/config/global";
 import { ILocale } from "@/config/lng";
 import { arSA, deDE, enUS, esES, frFR, jaJP, koKR, ptPT, zhCN, zhTW } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -25,7 +26,7 @@ const localeMap = {
 export default function Providers({ children, dicts, lng }: ProvidersProps) {
   return (
     <ClerkProvider localization={localeMap[lng] ?? enUS}>
-      <NextIntlClientProvider messages={dicts} locale={lng}>
+      <NextIntlClientProvider messages={dicts} locale={lng} timeZone={timeZone}>
         <NextUIProvider>{children}</NextUIProvider>
       </NextIntlClientProvider>
     </ClerkProvider>
