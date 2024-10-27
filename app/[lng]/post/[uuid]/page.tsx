@@ -5,6 +5,7 @@ import "github-markdown-css";
 import { notFound } from "next/navigation";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Waline from "./_components/Waline";
 interface pageProps {}
 
 export default async function page({ params: { uuid } }: pageProps) {
@@ -29,6 +30,9 @@ export default async function page({ params: { uuid } }: pageProps) {
           </Markdown>
         </div>
       </article>
+      <div className="mt-10 max-w-[1000px] mx-auto">
+        <Waline />
+      </div>
     </>
   );
 }

@@ -4,7 +4,8 @@
     "Categories": "Categories",
     "Tags": "Tags",
     "Login": "Login",
-    "Tools": "Tools"
+    "Tools": "Tools",
+    "transformer": "transformer"
   },
   "LocaleSwitcher": {
     "label": "Change language",
