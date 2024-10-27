@@ -13,3 +13,6 @@ export const getCates = async () => {
 export const getTags = async () => {
   return request.get(`/tags`, {});
 };
+export const getNotionBlogs = async (uuid: string) => {
+  return request.get(`/notion/${uuid}`, {});
+};
