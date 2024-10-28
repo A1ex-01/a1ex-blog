@@ -9,7 +9,11 @@ export default function PostCard({ post }: { post: IPost }) {
   return (
     <div key={post.id} className={"flex items-center"}>
       <div className="w-full">
-        <img className="w-full object-cover rounded-2xl h-[266px]" src={post.notion.cover} alt="" />
+        <img
+          className="w-full object-cover rounded-2xl h-[266px]"
+          src={post.notion?.cover}
+          alt=""
+        />
         <div className="content py-2">
           <div className="flex justify-between gap-2">
             <time className="text-sm text-font-sub-color" dateTime={post.notion.createdAt}>
