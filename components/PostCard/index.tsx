@@ -16,19 +16,19 @@ export default function PostCard({ post }: { post: IPost }) {
         />
         <div className="content py-2">
           <div className="flex justify-between gap-2">
-            <time className="text-sm text-font-sub-color" dateTime={post.notion.createdAt}>
-              {dayjs(post.notion.createdAt).format("YYYY-MM-DD HH:mm")}
+            <time className="text-sm text-font-sub-color" dateTime={post.notion?.createdAt}>
+              {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
             </time>
-            <Chip>{post.notion.category?.name}</Chip>
+            <Chip>{post.notion?.category?.name}</Chip>
           </div>
           <Link
             href={`/post/${post.notion_page_id}`}
             className="text-font-color text-xl font-[500] py-1 line-clamp-1 overflow-hidden text-ellipsis"
           >
-            {post.notion.title}
+            {post.notion?.title}
           </Link>
           <p className="text-font-sub-color line-clamp-2 overflow-hidden text-ellipsis h-12">
-            {post.notion.title}
+            {post.notion?.title}
           </p>
           <div className="user flex gap-2 items-center mt-3">
             <img

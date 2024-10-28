@@ -16,17 +16,17 @@ export default async function page({ params: { uuid } }: pageProps) {
     <>
       <div className="wrapper pb-10" style={{ backgroundImage: `url(${post?.notion?.cover})` }}>
         <div className="topshow py-10 max-w-[1000px] text-white mx-auto">
-          <h2 className="text-3xl text-primary">{post.notion.title}</h2>
-          <h3 className="text-lg mt-3">{post.notion.title}</h3>
+          <h2 className="text-3xl text-primary">{post.notion?.title}</h2>
+          <h3 className="text-lg mt-3">{post.notion?.title}</h3>
           <Chip size="lg" color="primary">
-            {post.notion.category?.name}
+            {post.notion?.category?.name}
           </Chip>
         </div>
       </div>
       <article className="max-w-[1000px] py-4 mx-auto content">
         <div className="md">
           <Markdown className={"markdown-body"} remarkPlugins={[remarkGfm]}>
-            {post.notion.content}
+            {post.notion?.content}
           </Markdown>
         </div>
       </article>
