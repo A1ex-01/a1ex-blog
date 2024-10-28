@@ -1,21 +1,39 @@
 export interface IPost {
   id: string;
-  title: string;
-  desc: string;
-  tag_id: string;
-  tags: ITag[];
-  read_count: number;
-  like_count: number;
-  comment_count: number;
-  cover: string;
-  updatedAt: string;
-  createdAt: string;
-  deletedAt: string;
-  userDetail: IUser;
-  category: ICategory;
-  detail: IPostDetail;
+  user_id: string;
+  deletedAt: null;
+  notion_page_id: string;
+  userDetail: UserDetail;
+  notion: Notion;
 }
-
+export interface Notion {
+  pageId: string;
+  cover: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  tags: Tag[];
+  category: Tag;
+  content: string;
+}
+export interface Tag {
+  id: string;
+  name: string;
+  color: string;
+}
+interface UserDetail {
+  id: string;
+  username: string;
+  nickname: string;
+  email: string;
+  age: null;
+  mobile: string;
+  birthday: null;
+  desc: string;
+  avatar: string;
+  createdAt: string;
+  updatedAt: string;
+}
 export interface IPostDetail {
   content_md: string;
   id: string;
