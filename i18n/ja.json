@@ -4,7 +4,8 @@
     "Home": "図頭",
     "Tags": "タグ",
     "Login": "ログイン",
-    "Tools": "ツール"
+    "Tools": "ツール",
+    "transformer": "トランス"
   },
   "LocaleSwitcher": {
     "label": "言語を変更する",

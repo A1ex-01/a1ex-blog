@@ -10,7 +10,6 @@ export default async function Tools({ params: { lng } }) {
   const t = await getTranslations();
   const { data, success } = await getNotionBlogs(process.env.NEXT_PUBLIC_NOTION_DATABASE_BLOG_ID);
   if (!success) return notFound();
-  console.log("🚀 ~ Tools ~ datas:", data);
   const tools = [
     {
       title: t("transformer"),
