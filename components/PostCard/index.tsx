@@ -19,7 +19,7 @@ export default function PostCard({ post }: { post: IPost }) {
             <time className="text-sm text-font-sub-color" dateTime={post.notion?.createdAt}>
               {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
             </time>
-            <Chip>{post.notion?.category?.name}</Chip>
+            <Chip color="primary">{post.notion?.category?.name}</Chip>
           </div>
           <Link
             href={`/post/${post.notion_page_id}`}
@@ -30,6 +30,13 @@ export default function PostCard({ post }: { post: IPost }) {
           <p className="text-font-sub-color line-clamp-2 overflow-hidden text-ellipsis h-12">
             {post.notion?.title}
           </p>
+          <div className="tags flex gap-1">
+            {post.notion?.tags?.map((tag) => (
+              <Chip size="sm" key={tag.id}>
+                {tag.name}
+              </Chip>
+            ))}
+          </div>
           <div className="user flex gap-2 items-center mt-3">
             <img
               alt="avatar"
