@@ -9,6 +9,7 @@ interface ScrollBallProps {}
 
 export default function ScrollBall(props: ScrollBallProps) {
   const { scroll } = useGlobalWrapperScroll();
+  if (typeof window === "undefined") return null;
   const progress = (scroll?.top / (window.innerHeight - 65)) * 100;
   return (
     <AnimatePresence mode="wait">
