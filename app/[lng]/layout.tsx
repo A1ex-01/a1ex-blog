@@ -2,13 +2,13 @@ import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import Providers from "@/providers";
 import { GlobalWrapperScrollProvider } from "@/providers/GlobalWrapperScrollProvider";
+import "@/styles/global.scss";
 import { currentUser } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { Inter } from "next/font/google";
 import "react-toastify/dist/ReactToastify.css";
 import "../globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "a1ex`s blog 技术学习分享",
@@ -27,7 +27,14 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/PreloadJS/1.0.1/preloadjs.min.js"
+          integrity="sha512-fEAYokehnF/e5P+Whrp7YAWBQGqQtimX1DrFBu21J+4WI2wCM/z+kTHiRMCcfYUqHbCcCADC9QivGn7Q75IQig=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
       </head>
+
       <body className={`${inter.className} antialiased`}>
         <Providers lng={lng} dicts={dicts}>
           <GlobalWrapperScrollProvider>
