@@ -19,6 +19,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LogoIcon } from "../icons";
 import { LocaleSwitcher } from "../localeSwitcher";
+import ScrollBall from "../ScrollBall";
 interface NavProps {}
 
 export default function Nav(props: NavProps) {
@@ -86,6 +87,9 @@ export default function Nav(props: NavProps) {
               </Button>
             </SignInButton>
           </SignedOut>
+        </NavbarItem>
+        <NavbarItem className="lg:flex">
+          <ScrollBall />
         </NavbarItem>
       </NavbarContent>
 
