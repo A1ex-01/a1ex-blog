@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextUIProvider } from "@nextui-org/system";
 import { NextIntlClientProvider } from "next-intl";
 import * as React from "react";
+import ClientProvider from "./ClientProvider";
 interface ProvidersProps {
   children: React.ReactNode;
   dicts: any;
@@ -27,7 +28,9 @@ export default function Providers({ children, dicts, lng }: ProvidersProps) {
   return (
     <ClerkProvider localization={localeMap[lng] ?? enUS}>
       <NextIntlClientProvider messages={dicts} locale={lng} timeZone={timeZone}>
-        <NextUIProvider>{children}</NextUIProvider>
+        <NextUIProvider>
+          <ClientProvider>{children}</ClientProvider>
+        </NextUIProvider>
       </NextIntlClientProvider>
     </ClerkProvider>
   );
