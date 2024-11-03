@@ -1,7 +1,4 @@
 export type SiteConfig = typeof siteConfig;
-import CategoryIcon from "@/assets/icon/category.svg";
-import HomeIcon from "@/assets/icon/home.svg";
-import TagIcon from "@/assets/icon/tag.svg";
 export const siteConfig = {
   name: "a1ex`s blog",
   description: "a1ex`s blog",
@@ -9,7 +6,7 @@ export const siteConfig = {
   navItems: [
     {
       name: "首页",
-      icon: HomeIcon,
+      icon: "tabler:home-filled",
       path: "/home",
       keyword: "Home"
     },
@@ -27,19 +24,19 @@ export const siteConfig = {
     // },
     {
       name: "分类",
-      icon: CategoryIcon,
+      icon: "tabler:category-filled",
       path: "/categories",
       keyword: "Categories"
     },
     {
       name: "标签",
-      icon: TagIcon,
+      icon: "icon-park-solid:tag",
       path: "/tags",
       keyword: "Tags"
     },
     {
       name: "工具",
-      icon: TagIcon,
+      icon: "entypo:tools",
       path: "/tools",
       keyword: "Tools"
     }

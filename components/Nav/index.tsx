@@ -1,8 +1,8 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { getPathname, Link } from "@/lib/navigation";
-import { getActive } from "@/utils";
+import { getPathname, Link, usePathname } from "@/lib/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Icon } from "@iconify/react";
 import {
   Button,
   Navbar,
@@ -14,8 +14,6 @@ import {
   NavbarMenuToggle
 } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LogoIcon } from "../icons";
 import { LocaleSwitcher } from "../localeSwitcher";
@@ -28,7 +26,7 @@ export default function Nav(props: NavProps) {
   const t = useTranslations("Basic");
 
   return (
-    <Navbar isMenuOpen={isMenuOpen} maxWidth="lg" isBordered>
+    <Navbar isMenuOpen={isMenuOpen} maxWidth="xl" isBordered>
       {/* {siteConfig.navItems.map((item) => (
         <NavbarMenuItem key={item.name} isActive={item.path === pathname}>
           <Link href={item.path}>{item.name}</Link>
@@ -52,10 +50,10 @@ export default function Nav(props: NavProps) {
           <NavbarItem key={item.name}>
             <Button
               href={item.path}
-              color={getActive(item.path, pathname) ? "primary" : "default"}
-              variant={getActive(item.path, pathname) ? "flat" : "light"}
+              color={pathname === item.path ? "primary" : "default"}
+              variant={pathname === item.path ? "shadow" : "light"}
               as={Link}
-              startContent={<Image src={item.icon} alt={item.name} width={18} />}
+              startContent={<Icon icon={item.icon} width="2em" height="2em" />}
             >
               {t(item.keyword)}
             </Button>
