@@ -20,7 +20,7 @@ export default async function HomeDetail({ params: { uuid } }: { params: { uuid:
     data: { list, total }
   } = res;
   return (
-    <div className="grid max-w-5xl mx-auto  grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:py-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid max-w-7xl mx-auto  grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:py-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="list grid grid-cols-3 gap-4">
           {list.map((item: IPost) => (
