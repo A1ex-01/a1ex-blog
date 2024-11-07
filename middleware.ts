@@ -8,7 +8,7 @@ const nextIntlMiddleware = createMiddleware({
 });
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId, redirectToSignIn } = auth();
+  const { userId, redirectToSignIn } = await auth();
   console.log("🚀 ~ clerkMiddleware ~ userId, redirectToSignIn:", userId, redirectToSignIn);
   const { nextUrl } = req;
   const isApi = nextUrl.pathname.startsWith("/api/");
