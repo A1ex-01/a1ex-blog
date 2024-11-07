@@ -1,7 +1,7 @@
 import { STATUSCODE } from "@/config/global";
 import { ILocale } from "@/config/lng";
 // import * as Sentry from "@sentry/nextjs";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export function isClient() {
   return typeof window !== "undefined";

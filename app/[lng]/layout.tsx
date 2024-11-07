@@ -24,7 +24,7 @@ export const generateMetadata = async ({ params }) => {
     // }
   });
 };
-
+export const viewport = { width: "device-width", initialScale: 1 };
 export default async function RootLayout({
   children,
   params: { lng }
