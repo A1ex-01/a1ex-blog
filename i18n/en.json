@@ -5,7 +5,8 @@
     "Tags": "Tags",
     "Login": "Login",
     "Tools": "Tools",
-    "transformer": "transformer"
+    "transformer": "transformer",
+    "Example": "Example"
   },
   "LocaleSwitcher": {
     "label": "Change language",

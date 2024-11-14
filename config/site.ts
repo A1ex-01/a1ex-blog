@@ -39,6 +39,12 @@ export const siteConfig = {
       icon: "entypo:tools",
       path: "/tools",
       keyword: "Tools"
+    },
+    {
+      name: "示例",
+      icon: "arcticons:example",
+      path: "/example",
+      keyword: "Example"
     }
     // {
     //   name: "友链",

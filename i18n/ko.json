@@ -5,7 +5,8 @@
     "Tags": "태그",
     "Login": "로그인",
     "Tools": "도구",
-    "transformer": "변신 로봇"
+    "transformer": "변신 로봇",
+    "Example": "예"
   },
   "LocaleSwitcher": {
     "label": "언어 변경",
