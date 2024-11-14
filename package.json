@@ -20,6 +20,7 @@
     "ahooks": "^3.8.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.10",
+    "flubber": "^0.4.2",
     "framer-motion": "^10.18.0",
     "github-markdown-css": "^5.7.0",
     "json-to-ts": "^2.1.0",
