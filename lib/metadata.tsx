@@ -21,7 +21,6 @@ export function getMetadata({
     description: undefinedIfHidden(description),
     // themeColor: "#000",
     // manifest: "/site.webmanifest",
-    viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
     robots: hidden ? "noindex" : undefined,
     twitter: undefinedIfHidden({
       card: "summary_large_image",
