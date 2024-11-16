@@ -90,3 +90,8 @@ export interface Annotations {
   code: boolean;
   color: string;
 }
+
+export interface ICodeFragment {
+  title: "IconTransform";
+  fragment: string;
+}

@@ -1,11 +1,19 @@
 "use client";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button } from "@nextui-org/react";
-import { interpolate } from "flubber";
-import { animate } from "framer-motion";
-import { useEffect, useState } from "react";
+import IconTransform from "@/components/IconTransform";
+import { useCommon } from "@/providers/CommonProvider";
+import { getFragmentWorker } from "@/utils";
+import "github-markdown-css";
+import Markdown from "react-markdown";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import remarkGfm from "remark-gfm";
 interface SvgTransformProps {}
 
+const md = `
+\`\`\`tsx
+async asyncData({ $axios, query, n2token }) {
+}
+\`\`\`
+`;
 const paths = {
   star: {
     color: "#fff312",
@@ -18,47 +26,40 @@ const paths = {
 };
 
 export default function SvgTransform(props: SvgTransformProps) {
-  const [isStar, setIsStar] = useState(false);
-  function togglePath(isStar: boolean) {
-    const path = document.querySelector("#icon path");
-    const currentShape = isStar ? paths.star : paths.heart;
-    const targetShape = isStar ? paths.heart : paths.star;
-    // Use interpolate to create the morphing path function
-    const mixPaths = interpolate(currentShape.d, targetShape.d, {
-      maxSegmentLength: 1.5
-    });
-    // Start the animation
-    animate(0, 1, {
-      duration: 0.5,
-      ease: "easeInOut",
-      onUpdate: (progress) => {
-        path.setAttribute("d", mixPaths(progress));
-        path.setAttribute("fill", targetShape.color);
-      }
-    });
-  }
-  useEffect(() => {
-    togglePath(isStar);
-  }, [isStar]);
+  const { codeFragments } = useCommon();
   return (
     <div>
       <h1>svg 过度变换</h1>
-
-      <main
-        style={{
-          fontSize: 100
-        }}
-      >
-        <svg id="icon" width="300" height="300" viewBox="0 0 400 400">
-          <g transform="scale(5)">
-            <path />
-          </g>
-        </svg>
-        <Button
-          onClick={() => setIsStar((pre) => !pre)}
-          isIconOnly
-          startContent={<Icon icon={"tabler:play"} />}
-        />
+      <main>
+        <div className="wrapper mx-auto w-max">
+          <IconTransform startIconifyIcon="tabler:star" endIconifyIcon="tabler:heart" />
+        </div>
+        <div className="codeBox">
+          <Markdown
+            className={"markdown-body rounded-lg p-4"}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code({ node, inline, className, children, ...props }: any) {
+                const match = /language-(\w+)/.exec(className || "");
+                // custom
+                return !inline && match ? (
+                  <SyntaxHighlighter PreTag="div" language={match[1]} {...props}>
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              }
+            }}
+          >
+            {getFragmentWorker(
+              codeFragments?.find((f) => f.title === "IconTransform")?.fragment!,
+              "tsx"
+            )}
+          </Markdown>
+        </div>
       </main>
     </div>
   );

@@ -5,24 +5,14 @@ import Providers from "@/providers";
 import { GlobalWrapperScrollProvider } from "@/providers/GlobalWrapperScrollProvider";
 import "@/styles/global.scss";
 import { currentUser } from "@clerk/nextjs/server";
+import fs from "fs";
 import { getMessages } from "next-intl/server";
 import { Inter } from "next/font/google";
 import "react-toastify/dist/ReactToastify.css";
 import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 export const generateMetadata = async ({ params }) => {
-  return getMetadata({
-    // title: post.notion.title,
-    // description: post.notion.title || undefined,
-    // overrides: {
-    //   openGraph: {
-    //     title: post.notion.title,
-    //     description: post.notion.title || undefined,
-    //     type: "website"
-    //     // TODO: og images
-    //   }
-    // }
-  });
+  return getMetadata({});
 };
 export const viewport = { width: "device-width", initialScale: 1 };
 export default async function RootLayout({
@@ -33,6 +23,10 @@ export default async function RootLayout({
 }>) {
   const dicts = await getMessages(lng);
   const user = await currentUser();
+  const IconTransformCodeFragment = await fs.readFileSync(
+    "./components/IconTransform/index.tsx",
+    "utf-8"
+  );
   return (
     <html lang="en">
       <head>
@@ -46,7 +40,16 @@ export default async function RootLayout({
       </head>
 
       <body className={`${inter.className} antialiased`}>
-        <Providers lng={lng} dicts={dicts}>
+        <Providers
+          lng={lng}
+          dicts={dicts}
+          codeFragments={[
+            {
+              title: "IconTransform",
+              fragment: IconTransformCodeFragment
+            }
+          ]}
+        >
           <GlobalWrapperScrollProvider>
             <Nav />
             <div className=" mx-auto ">{children}</div>
