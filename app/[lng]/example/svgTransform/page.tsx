@@ -29,7 +29,7 @@ export default function SvgTransform(props: SvgTransformProps) {
   const { codeFragments } = useCommon();
   return (
     <div>
-      <h1>svg 过度变换</h1>
+      <h1>svg 过渡变换</h1>
       <main>
         <div className="wrapper mx-auto w-max">
           <IconTransform startIconifyIcon="tabler:star" endIconifyIcon="tabler:heart" />
