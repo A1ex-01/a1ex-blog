@@ -28,7 +28,6 @@ const localeMap = {
   ar: arSA
 };
 export default function Providers({ children, dicts, lng, codeFragments }: ProvidersProps) {
-  console.log("🚀 ~ Providers ~ codeFragments:", codeFragments);
   return (
     <ClerkProvider localization={localeMap[lng] ?? enUS}>
       <NextIntlClientProvider messages={dicts} locale={lng} timeZone={timeZone}>
