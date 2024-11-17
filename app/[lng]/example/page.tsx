@@ -4,7 +4,7 @@ import Link from "next/link";
 interface ExampleProps {}
 const examples = [
   {
-    label: "svg 过度变换",
+    label: "svg 过渡变换",
     path: "example/svgTransform"
   }
 ];
