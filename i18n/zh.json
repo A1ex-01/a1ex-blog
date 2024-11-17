@@ -5,7 +5,8 @@
     "Tags": "标签",
     "Login": "登录",
     "Tools": "工具",
-    "transformer": "变压器"
+    "transformer": "变压器",
+    "Example": "例子"
   },
   "LocaleSwitcher": {
     "label": "更改语言",
