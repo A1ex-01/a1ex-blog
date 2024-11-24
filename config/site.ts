@@ -22,18 +22,18 @@ export const siteConfig = {
     //   path: "/about",
     //   keyword: "about"
     // },
-    {
-      name: "分类",
-      icon: "tabler:category-filled",
-      path: "/categories",
-      keyword: "Categories"
-    },
-    {
-      name: "标签",
-      icon: "icon-park-solid:tag",
-      path: "/tags",
-      keyword: "Tags"
-    },
+    // {
+    //   name: "分类",
+    //   icon: "tabler:category-filled",
+    //   path: "/categories",
+    //   keyword: "Categories"
+    // },
+    // {
+    //   name: "标签",
+    //   icon: "icon-park-solid:tag",
+    //   path: "/tags",
+    //   keyword: "Tags"
+    // },
     {
       name: "工具",
       icon: "entypo:tools",
@@ -42,7 +42,7 @@ export const siteConfig = {
     },
     {
       name: "示例",
-      icon: "arcticons:example",
+      icon: "ph:list-star-bold",
       path: "/example",
       keyword: "Example"
     }
