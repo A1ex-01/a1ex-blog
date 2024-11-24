@@ -11,6 +11,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        font: {
+          main: "#222222",
+          sub: "#444",
+          light: "#999999"
+        },
         background: "var(--background)",
         foreground: "var(--foreground)"
       }
