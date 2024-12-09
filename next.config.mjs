@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n");
 /** @type {import('next').NextConfig} */
@@ -30,4 +31,18 @@ const nextConfig = {
   },
   reactStrictMode: false
 };
-export default withNextIntl(nextConfig);
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: "1-9pl",
+  project: "next_blog",
+  // An auth token is required for uploading source maps.
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  silent: false, // Can be used to suppress logs
+
+  sourcemaps: {
+    disable: true
+  },
+  hideSourceMaps: true,
+  // tunnelRoute: "/monitoring-tunnel",
+  autoInstrumentServerFunctions: false
+});

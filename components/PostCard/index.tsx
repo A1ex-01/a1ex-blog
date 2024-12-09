@@ -1,3 +1,4 @@
+"use client";
 // import axios from 'axios'
 import { IPost } from "@/services/types";
 import { Chip } from "@nextui-org/react";
