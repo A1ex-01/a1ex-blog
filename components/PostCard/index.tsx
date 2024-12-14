@@ -37,8 +37,8 @@ export default function PostCard({ post }: { post: IPost }) {
           >
             {post.notion?.title}
           </Link>
-          <p className="line-clamp-2 overflow-hidden text-ellipsis mb-2 text-font-sub">
-            {post.notion?.title}
+          <p className="line-clamp-2 overflow-hidden text-ellipsis mb-2 text-font-sub text-sm">
+            {post.notion?.content}
           </p>
 
           <div className="user flex gap-2 items-center mt-3">
