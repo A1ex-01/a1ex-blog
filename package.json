@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@clerk/localizations": "^3.4.0",
@@ -39,17 +40,24 @@
     "swiper": "^11.1.15"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.1.0",
+    "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "jsdom": "^25.0.1",
+    "matchers": "link:@testing-library/jest-dom/matchers",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8"
   }
 }
