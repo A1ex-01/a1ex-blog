@@ -1,8 +1,8 @@
 "use client";
-import { Chip } from "@nextui-org/react";
 import jsonToTs from "json-to-ts";
 import { useEffect, useState } from "react";
 // import CodeMirror from "./_components/CodeMirror";
+import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { toast } from "react-hot-toast";
@@ -48,9 +48,7 @@ export default function Tools() {
     <div className="max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold my-10 text-primary">{t("transformer")}</h2>
       <div className="top">
-        <Chip size="lg" color="primary">
-          json to typescript
-        </Chip>
+        <Badge>json to typescript</Badge>
       </div>
       <main className=" my-4 flex w-full">
         <div className="left flex-1">
