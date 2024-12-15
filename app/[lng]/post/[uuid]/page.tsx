@@ -1,7 +1,7 @@
+import { Badge } from "@/components/ui/badge";
 import { getMetadata } from "@/lib/metadata";
 import { getPost } from "@/services/common";
 import { IPost } from "@/services/types";
-import { Chip } from "@nextui-org/react";
 import "github-markdown-css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -51,15 +51,15 @@ export default async function page({ params: { uuid } }: pageProps) {
           <h2 className="text-3xl text-primary font-bold">{post.notion?.title}</h2>
           <h3 className="text-lg mt-3">{post.notion?.title}</h3>
           {post.notion.category?.name && (
-            <Chip size="lg" className="my-4" color="primary">
+            <Badge className="my-4" color="primary">
               {post.notion?.category?.name}
-            </Chip>
+            </Badge>
           )}
           <div className="tags flex gap-2">
             {post.notion?.tags?.map((tag) => (
-              <Chip size="sm" key={tag.id}>
+              <Badge variant={"secondary"} key={tag.id}>
                 {tag.name}
-              </Chip>
+              </Badge>
             ))}
           </div>
         </div>

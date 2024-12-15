@@ -4,12 +4,20 @@ import { useParams } from "next/navigation";
 import * as React from "react";
 
 import { ILocale, locales } from "@/config/lng";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { IconCheck, IconSelector } from "@tabler/icons-react";
-import clsx from "clsx";
 import { useLocale, useTranslations } from "next-intl";
 
 import { usePathname, useRouter } from "@/lib/navigation";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "./ui/dropdown-menu";
 
 export function LocaleSwitcher() {
   const t = useTranslations("LocaleSwitcher");
@@ -36,7 +44,34 @@ export function LocaleSwitcher() {
 
   return (
     <div className="flex h-full items-center justify-center">
-      <Dropdown>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">
+            {t("locale", { locale: locale })}
+            <Icon icon={"tabler:selector"} width="2em" height="2em" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>Pick language</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={locale}
+            onValueChange={(e: ILocale) => {
+              console.log(e);
+              changeLocale(e);
+            }}
+          >
+            {locales.map((cur: ILocale) => (
+              <DropdownMenuRadioItem disabled={isPending || locale === cur} key={cur} value={cur}>
+                <div className="w-full cursor-pointer items-center flex justify-between">
+                  <span>{t("locale", { locale: cur })}</span>
+                </div>
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      {/* <Dropdown>
         <DropdownTrigger>
           <Button variant="ghost" endContent={<IconSelector />}>
             {t("locale", { locale: locale })}
@@ -52,7 +87,7 @@ export function LocaleSwitcher() {
             </DropdownItem>
           ))}
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown> */}
     </div>
   );
 }

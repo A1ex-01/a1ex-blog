@@ -8,12 +8,12 @@ import "swiper/css/effect-cards";
 
 // import required modules
 import { IPost } from "@/services/types";
-import { Chip } from "@nextui-org/react";
 import dayjs from "dayjs";
 import { EffectCards } from "swiper/modules";
 // import CategoryIcon from '@/assets/icon/category.svg'
 // import TagIcon from '@/assets/icon/tag.svg'
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 interface HomeSwiperProps {
   posts: IPost[];
 }
@@ -38,13 +38,9 @@ export default function HomeSwiper({ posts }: HomeSwiperProps) {
               />
               <div className="tags h-7 flex gap-1 absolute top-2 left-2">
                 {post.notion?.tags?.map((tag) => (
-                  <Chip
-                    size="sm"
-                    key={tag.id}
-                    className="bg-[#788086]/80 cursor-pointer text-white"
-                  >
+                  <Badge key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
                     {tag.name}
-                  </Chip>
+                  </Badge>
                 ))}
               </div>
               <div className="content bg-black/20 p-4 absolute bottom-0 py-2">
@@ -52,9 +48,7 @@ export default function HomeSwiper({ posts }: HomeSwiperProps) {
                   <time className="text-sm text-font-light" dateTime={post.notion?.createdAt}>
                     {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
                   </time>
-                  {post.notion?.category?.name && (
-                    <Chip color="primary">{post.notion?.category?.name}</Chip>
-                  )}
+                  {post.notion?.category?.name && <Badge>{post.notion?.category?.name}</Badge>}
                 </div>
                 <Link
                   href={`/post/${post.notion_page_id}`}

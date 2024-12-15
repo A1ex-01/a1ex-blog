@@ -1,7 +1,7 @@
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPathname } from "@/lib/navigation";
 import { getNotionBlogs } from "@/services/common";
 import { INotionBlog } from "@/types";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,19 +23,13 @@ export default async function Tools({ params: { lng } }) {
       <main className="my-4">
         <div className="list grid grid-cols-3  gap-10">
           {tools.map((item) => (
-            <Card
-              key={item.title}
-              className=""
-              as={Link}
-              href={getPathname({
-                href: item.url,
-                locale: lng
-              })}
-            >
-              <CardHeader className="flex-col items-start font-bold text-primary text-lg">
-                {item.title}
+            <Card key={item.title}>
+              <CardHeader>
+                <CardTitle>
+                  <Link href={getPathname({ href: item.url, locale: lng })}>{item.title}</Link>
+                </CardTitle>
+                <CardDescription className="">{item.desc}</CardDescription>
               </CardHeader>
-              <CardBody className="">{item.desc}</CardBody>
             </Card>
           ))}
         </div>
@@ -44,11 +38,17 @@ export default async function Tools({ params: { lng } }) {
         <h2 className="text-3xl font-bold my-10 text-primary">NotionBlogs</h2>
         <div className="list grid grid-cols-3  gap-10">
           {data?.map((item: INotionBlog) => (
-            <Card key={item.id} className="" as={Link} href={item.url} target="_blank">
-              <CardHeader className="flex-col items-start font-bold text-primary text-lg">
-                {item?.properties["名称"].title[0].plain_text}
+            <Card key={item.id}>
+              <CardHeader>
+                <CardTitle>
+                  <Link href={item.url} target="_blank">
+                    {item?.properties["名称"].title[0].plain_text}
+                  </Link>
+                </CardTitle>
+                <CardDescription className="">
+                  {item?.properties["名称"].title[0].plain_text}
+                </CardDescription>
               </CardHeader>
-              <CardBody className="">{item?.properties["名称"].title[0].plain_text}</CardBody>
             </Card>
           ))}
         </div>

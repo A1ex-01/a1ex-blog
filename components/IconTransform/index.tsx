@@ -1,9 +1,9 @@
 "use client";
 import { getIcon, Icon, IconifyIcon, loadIcons } from "@iconify/react";
-import { Button } from "@nextui-org/react";
 import { interpolate } from "flubber";
 import { animate } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 interface IconTransformProps<T> {
   startIconifyIcon: T;
   endIconifyIcon: T;
@@ -61,12 +61,9 @@ export default function IconTransform({
           <path fill="#008c8c" d={d}></path>
         </svg>
       )}
-      <Button
-        onClick={() => setIsStart((pre) => !pre)}
-        isIconOnly
-        color="primary"
-        startContent={<Icon icon={"tabler:play"} />}
-      />
+      <Button onClick={() => setIsStart((pre) => !pre)}>
+        <Icon icon={"tabler:play"} />
+      </Button>
     </div>
   );
 }

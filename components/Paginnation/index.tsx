@@ -1,57 +1,30 @@
 "use client";
 import { IPagination } from "@/types";
-import { Button, Pagination as NextUIPagination } from "@nextui-org/react";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { Pagination, PaginationItem, PaginationNext, PaginationPrevious } from "../ui/pagination";
 
 interface PaginationProps extends IPagination {}
 
-export default function Pagination({ current, pageSize, total }: PaginationProps) {
+export default function HomePagination({ current, pageSize, total }: PaginationProps) {
   const totalPage = Math.ceil(total / pageSize!);
   return (
-    <div className="flex gap-5 items-center mx-auto">
-      <Button
-        as={Link}
-        href={`/home/${current! - 1}`}
-        isDisabled={current === 1}
-        size="sm"
-        variant="flat"
-        color="primary"
-      >
-        Previous
-      </Button>
-      <NextUIPagination
-        renderItem={({ page }) => {
-          return (
-            <div className=" flex gap-2 items-center" key={page}>
-              <Button
-                isIconOnly
-                key={page}
-                as={Link}
-                href={`/home/${page}`}
-                isDisabled={page === current}
-                color="primary"
-                variant={page === current ? "shadow" : "faded"}
-              >
-                {page}
-              </Button>
-            </div>
-          );
-        }}
-        total={totalPage}
-        color="primary"
-        page={current}
-      />
-
-      <Button
-        as={Link}
-        href={`/home/${current! + 1}`}
-        isDisabled={current === totalPage}
-        size="sm"
-        variant="flat"
-        color="primary"
-      >
-        Next
-      </Button>
+    <div className="flex list-none gap-5 items-center mx-auto">
+      <Pagination>
+        <PaginationItem>
+          <PaginationPrevious href={`/home/${current! - 1}`} />
+        </PaginationItem>
+        {Array.from({ length: totalPage }, (_, index) => (
+          <PaginationItem key={index + 1}>
+            <Link href={`/home/${index + 1}`}>
+              <Button variant={current === index + 1 ? "default" : "ghost"}>{index + 1}</Button>
+            </Link>
+          </PaginationItem>
+        ))}
+        <PaginationItem>
+          <PaginationNext href={`/home/${current! + 1}`} />
+        </PaginationItem>
+      </Pagination>
     </div>
   );
 }

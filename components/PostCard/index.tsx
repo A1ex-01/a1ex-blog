@@ -1,11 +1,11 @@
 "use client";
 // import axios from 'axios'
 import { IPost } from "@/services/types";
-import { Chip } from "@nextui-org/react";
 import dayjs from "dayjs";
 // import CategoryIcon from '@/assets/icon/category.svg'
 // import TagIcon from '@/assets/icon/tag.svg'
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 export default function PostCard({ post }: { post: IPost }) {
   return (
     <div key={post.id} className={"flex items-center"}>
@@ -17,9 +17,9 @@ export default function PostCard({ post }: { post: IPost }) {
         />
         <div className="tags h-7 flex gap-1 absolute top-2 left-2">
           {post.notion?.tags?.map((tag) => (
-            <Chip size="sm" key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
+            <Badge key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
               {tag.name}
-            </Chip>
+            </Badge>
           ))}
         </div>
         <div className="content py-2">
@@ -28,7 +28,7 @@ export default function PostCard({ post }: { post: IPost }) {
               {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
             </time>
             {post.notion?.category?.name && (
-              <Chip color="primary">{post.notion?.category?.name}</Chip>
+              <Badge color="primary">{post.notion?.category?.name}</Badge>
             )}
           </div>
           <Link
