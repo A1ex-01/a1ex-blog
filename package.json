@@ -35,7 +35,8 @@
     "react-syntax-highlighter": "^15.6.1",
     "react-toastify": "^10.0.6",
     "remark-gfm": "^4.0.0",
-    "sass": "^1.80.6"
+    "sass": "^1.80.6",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.12",
