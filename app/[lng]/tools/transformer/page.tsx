@@ -18,7 +18,7 @@ const template = `{
 }`;
 const CodeMirror = dynamic(() => import("./_components/CodeMirror"), { ssr: false });
 export default function Tools() {
-  const t = useTranslations();
+  const t = useTranslations("Basic");
   const [value, setValue] = useState(template);
   const [tsValue, setTsValue] = useState(``);
   const getTsText = (value: string) => {

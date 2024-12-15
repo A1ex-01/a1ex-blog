@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function Tools({ params: { lng } }) {
-  const t = await getTranslations();
+  const t = await getTranslations("Basic");
   const { data, success } = await getNotionBlogs(process.env.NEXT_PUBLIC_NOTION_DATABASE_BLOG_ID);
   if (!success) return notFound();
   const tools = [
