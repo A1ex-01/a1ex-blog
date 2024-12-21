@@ -6,6 +6,10 @@ const examples = [
   {
     label: "svg 过渡变换",
     path: "example/svgTransform"
+  },
+  {
+    label: "customSwiper",
+    path: "example/customSwiper"
   }
 ];
 export default function Example(props: ExampleProps) {
