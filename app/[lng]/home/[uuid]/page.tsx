@@ -1,4 +1,4 @@
-import Pagination from "@/components/Paginnation";
+import { AwsomePagination } from "@/components/AwsomePagination";
 import PostCard from "@/components/PostCard";
 import { getPosts } from "@/services/common";
 import { IPost } from "@/services/types";
@@ -27,7 +27,7 @@ export default async function HomeDetail({ params: { uuid } }: { params: { uuid:
             <PostCard key={item.id} post={item} />
           ))}
         </div>
-        <Pagination pageSize={6} current={+uuid} total={total} />
+        <AwsomePagination parentPath="/home" pageSize={6} page={+uuid} totalCount={total} />
       </main>
     </div>
   );

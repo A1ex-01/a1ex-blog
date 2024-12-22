@@ -3,6 +3,7 @@ export const siteConfig = {
   name: "a1ex`s blog",
   description: "a1ex`s blog",
   url: "http://a1ex.vip",
+  ICP: "赣ICP备2022002397号-2",
   navItems: [
     {
       name: "首页",
