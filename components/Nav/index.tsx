@@ -10,13 +10,7 @@ import { LogoIcon } from "../icons";
 import { LocaleSwitcher } from "../localeSwitcher";
 import ScrollBall from "../ScrollBall";
 import { Button } from "../ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle
-} from "../ui/navigation-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
 interface NavProps {}
 
 export default function Nav(props: NavProps) {
@@ -30,14 +24,11 @@ export default function Nav(props: NavProps) {
         <NavigationMenuList>
           {siteConfig.navItems.map((item) => (
             <NavigationMenuItem key={item.name}>
-              <Link href={item.path} legacyBehavior passHref>
-                <NavigationMenuLink
-                  active={pathname === item.path}
-                  className={navigationMenuTriggerStyle()}
-                >
+              <Link href={item.path}>
+                <Button variant={pathname.includes(item.path) ? "default" : "ghost"}>
                   <Icon icon={item.icon} className="mr-2" width="2em" height="2em" />
                   {t(item.keyword)}
-                </NavigationMenuLink>
+                </Button>
               </Link>
             </NavigationMenuItem>
           ))}
