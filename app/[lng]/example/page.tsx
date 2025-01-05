@@ -10,6 +10,10 @@ const examples = [
   {
     label: "customSwiper",
     path: "example/customSwiper"
+  },
+  {
+    label: "scrollPage",
+    path: "example/scrollPage"
   }
 ];
 export default function Example(props: ExampleProps) {

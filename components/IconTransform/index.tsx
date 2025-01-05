@@ -35,6 +35,7 @@ export default function IconTransform({
   function togglePath(isStart: boolean) {
     const currentShape = isStart ? paths!.startIconifyIcon : paths!.endIconifyIcon;
     const targetShape = isStart ? paths!.endIconifyIcon : paths!.startIconifyIcon;
+    if (!currentShape || !targetShape) return;
     // Use interpolate to create the morphing path function
     const mixPaths = interpolate(extractPathD(currentShape.body), extractPathD(targetShape.body), {
       maxSegmentLength: 1.5

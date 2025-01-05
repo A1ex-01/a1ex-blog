@@ -21,7 +21,7 @@ export default function ClientProvider({ children }: ClientProviderProps) {
           color: "#fff"
         }
       });
-    }, 500);
+    }, 100);
     // if (typeof window === "undefined") return;
     // const createjs = window.createjs;
     // const queue = new createjs.LoadQueue();
