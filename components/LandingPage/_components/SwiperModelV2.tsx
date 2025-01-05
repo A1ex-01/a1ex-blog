@@ -1,14 +1,12 @@
-import { ICharacterV2 } from "@/services/user";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import clsx from "clsx";
 import "swiper/css";
 // import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 interface SwiperModelV2Props {
-  characters: ICharacterV2[];
-  setSadoo: (s: ICharacterV2) => void;
-  currentCharacter: ICharacterV2;
+  characters: any[];
+  setSadoo: (s: any) => void;
+  currentCharacter: any;
   tip?: "intro" | string;
 }
 
@@ -16,7 +14,7 @@ const SwiperModelV2 = ({
   characters,
   setSadoo,
   currentCharacter,
-  tip = "intro",
+  tip = "intro"
 }: SwiperModelV2Props) => {
   const onPre = () => {
     const index = characters.findIndex((i) => i.uuid === currentCharacter.uuid);
@@ -37,12 +35,6 @@ const SwiperModelV2 = ({
   };
   return (
     <div className="flex items-center gap-4 justify-center">
-      <IconChevronLeft
-        onClick={onPre}
-        className="text-[#E1E1E1] cursor-pointer hover:text-primary"
-        size={64}
-      />
-
       <div className="slider flex  gap-2 flex-row flex-shrink-0 select-none">
         {characters?.map((i) => {
           return (
@@ -50,7 +42,7 @@ const SwiperModelV2 = ({
               key={i?.uuid}
               className={clsx(
                 "item cursor-pointer border-2 border-[#FFE7AA] rounded-md w-[60px] h-[60px] md:w-[100px] md:h-[100px] overflow-hidden",
-                currentCharacter.uuid === i.uuid && "border-primary border-3",
+                currentCharacter.uuid === i.uuid && "border-primary border-3"
               )}
               onClick={() => {
                 setSadoo(i);
@@ -67,11 +59,6 @@ const SwiperModelV2 = ({
           );
         })}
       </div>
-      <IconChevronRight
-        onClick={onNext}
-        className="text-[#E1E1E1] cursor-pointer hover:text-primary"
-        size={64}
-      />
     </div>
   );
 };

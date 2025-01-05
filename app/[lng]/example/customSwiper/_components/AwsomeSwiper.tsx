@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import AxIcon from "@/components/AxIcon";
 import { useMemo, useState } from "react";
 
 interface AwsomeSwiperProps {}
@@ -66,10 +66,10 @@ export default function AwsomeSwiper(props: AwsomeSwiperProps) {
     >
       <div className="btns flex text-lg gap-2 items-center absolute top-4 left-1/2 -translate-x-1/2">
         <div className="left cursor-pointer" onClick={onPre}>
-          <Icon icon="tabler:arrow-left" />
+          <AxIcon icon="tabler:arrow-left" />
         </div>
         <div className="right cursor-pointer" onClick={onNext}>
-          <Icon icon="tabler:arrow-right" />
+          <AxIcon icon="tabler:arrow-right" />
         </div>
       </div>
       <div className="swiper absolute flex h-[260px] items-center gap-4 left-1/2 bottom-4">
