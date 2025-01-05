@@ -7,7 +7,7 @@ import { ILocale, locales } from "@/config/lng";
 import { useLocale, useTranslations } from "next-intl";
 
 import { usePathname, useRouter } from "@/lib/navigation";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import AxIcon from "./AxIcon";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -48,7 +48,7 @@ export function LocaleSwitcher() {
         <DropdownMenuTrigger asChild>
           <Button variant="outline">
             {t("locale", { locale: locale })}
-            <Icon icon={"tabler:selector"} width="2em" height="2em" />
+            <AxIcon icon={"tabler:selector"} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
@@ -71,23 +71,6 @@ export function LocaleSwitcher() {
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-      {/* <Dropdown>
-        <DropdownTrigger>
-          <Button variant="ghost" endContent={<IconSelector />}>
-            {t("locale", { locale: locale })}
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu>
-          {locales.map((cur) => (
-            <DropdownItem isDisabled={isPending} key={cur} onClick={() => changeLocale(cur)}>
-              <div className="w-full items-center flex justify-between">
-                <span>{t("locale", { locale: cur })}</span>
-                {locale === cur && <IconCheck className={clsx("ml-auto h-4 w-4 opacity-100")} />}
-              </div>
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown> */}
     </div>
   );
 }

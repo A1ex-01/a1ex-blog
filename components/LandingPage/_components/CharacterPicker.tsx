@@ -2,9 +2,9 @@
 import { useMemo } from "react";
 import "swiper/css";
 // import "swiper/css/navigation";
+import AxIcon from "@/components/AxIcon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { landingJAChatBgs } from "@/config/demoData";
-import { IconChevronsLeft, IconChevronsRight, IconSquareRotatedFilled } from "@tabler/icons-react";
 import clsx from "clsx";
 import "swiper/css/pagination";
 import SwiperModelV2 from "./SwiperModelV2";
@@ -56,21 +56,6 @@ export default function CharacterPicker({
           boxShadow: "0px 4px 17.9px 6px #9B9B9B40"
         }}
       >
-        <div className="left hidden md:block  cursor-pointer absolute -left-16 top-1/2 -translate-y-full">
-          <IconChevronsLeft
-            onClick={onPre}
-            className="text-[#E1E1E1] cursor-pointer hover:text-[#8f61b3]"
-            size={82}
-          />
-        </div>
-        <div className="left  hidden md:block cursor-pointer absolute -right-16 top-1/2 -translate-y-full">
-          <IconChevronsRight
-            onClick={onNext}
-            className="text-[#E1E1E1] cursor-pointer hover:text-[#8f61b3] "
-            size={82}
-          />
-        </div>
-
         <div className="box flex  rounded-2xl overflow-hidden relative">
           <div className="left w-[30%] flex-shrink-0 hidden md:block">
             <img
@@ -137,7 +122,8 @@ export default function CharacterPicker({
                 setCurrentCharacter(item);
               }}
             >
-              <IconSquareRotatedFilled
+              <AxIcon
+                icon={"tabler:square-rounded-filled"}
                 className={clsx(
                   "cursor-pointer",
                   currentCharacter?.uuid === item.uuid ? "text-[#8f61b3]" : "text-[#E1E1E1]"

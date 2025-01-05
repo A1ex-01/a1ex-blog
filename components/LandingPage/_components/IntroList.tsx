@@ -3,8 +3,6 @@ import { useMemo, useState } from "react";
 import "swiper/css";
 // import "swiper/css/navigation";
 import { Button } from "@/components/ui/button";
-import { IconChevronsLeft, IconChevronsRight } from "@tabler/icons-react";
-import { useTranslations } from "next-intl";
 import "swiper/css/pagination";
 // import "@/styles/github-markdown.scss";
 interface IntroListProps {
@@ -17,7 +15,6 @@ interface IntroListProps {
 
 export default function IntroList({ intros, toThreads }: IntroListProps) {
   const [index, setIndex] = useState(0);
-  const t = useTranslations("basic");
   const onPre = () => {
     index > 0 ? setIndex(index - 1) : setIndex(intros.length - 1);
   };
@@ -28,20 +25,6 @@ export default function IntroList({ intros, toThreads }: IntroListProps) {
   return (
     <div className="w-full min-h-[45vh]">
       <div className="topWrapper h-full relative pb-0 rounded-2xl">
-        <div className="left block cursor-pointer absolute -left-4 md:-left-20 top-1/2 -translate-y-full z-40">
-          <IconChevronsLeft
-            onClick={onPre}
-            className="text-[#E1E1E1] cursor-pointer hover:text-[#8f61b3]"
-            size={82}
-          />
-        </div>
-        <div className="left  block cursor-pointer absolute -right-4 md:-right-20 top-1/2 -translate-y-full  z-40">
-          <IconChevronsRight
-            onClick={onNext}
-            className="text-[#E1E1E1] cursor-pointer hover:text-[#8f61b3] "
-            size={82}
-          />
-        </div>
         <div className="box h-full mx-4 md:mx-0 flex overflow-hidden relative items-center">
           <div className="left h-full w-[50%] flex-shrink-0 rounded-tr-[70px] overflow-hidden hidden md:block">
             <img

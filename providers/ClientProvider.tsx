@@ -1,6 +1,5 @@
 "use client";
 
-import FullPageLoading from "@/components/FullPageLoading";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 interface ClientProviderProps {
@@ -41,11 +40,11 @@ export default function ClientProvider({ children }: ClientProviderProps) {
     // });
   };
   useEffect(() => {
-    initPreloadSource();
+    // initPreloadSource();
   }, []);
   return (
     <>
-      {progress < 1 && <FullPageLoading />}
+      {/* {progress < 1 && <FullPageLoading />} */}
       <Toaster />
       {children}
     </>

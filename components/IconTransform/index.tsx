@@ -1,8 +1,9 @@
 "use client";
-import { getIcon, Icon, IconifyIcon, loadIcons } from "@iconify/react";
+import { getIcon, IconifyIcon, loadIcons } from "@iconify/react";
 import { interpolate } from "flubber";
 import { animate } from "framer-motion";
 import { useEffect, useState } from "react";
+import AxIcon from "../AxIcon";
 import { Button } from "../ui/button";
 interface IconTransformProps<T> {
   startIconifyIcon: T;
@@ -63,7 +64,7 @@ export default function IconTransform({
         </svg>
       )}
       <Button onClick={() => setIsStart((pre) => !pre)}>
-        <Icon icon={"tabler:play"} />
+        <AxIcon icon={"tabler:play"} />
       </Button>
     </div>
   );
