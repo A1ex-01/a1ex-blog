@@ -59,7 +59,7 @@ export default function AwsomeSwiper(props: AwsomeSwiperProps) {
   }, [index]);
   return (
     <div
-      className="w-full h-full relative"
+      className="w-full h-full relative overflow-hidden"
       style={{
         background: `url(${currentItem.src}) center center / cover no-repeat`
       }}
@@ -72,7 +72,7 @@ export default function AwsomeSwiper(props: AwsomeSwiperProps) {
           <Icon icon="tabler:arrow-right" />
         </div>
       </div>
-      <div className="swiper absolute flex  w-[140px] aspect-[2/3] items-center gap-4 left-1/2 bottom-4">
+      <div className="swiper absolute flex h-[260px] items-center gap-4 left-1/2 bottom-4">
         {renderImgs.map((item, index) => {
           return (
             <div

@@ -18,7 +18,7 @@ export default function Nav(props: NavProps) {
   const pathname = usePathname();
   const t = useTranslations("Basic");
   return (
-    <div className="flex gap-10 items-center static top-0 max-w-5xl py-4 mx-auto">
+    <div className="flex gap-10 items-center static top-0 max-w-7xl py-4 mx-auto">
       <LogoIcon width={30} />
       <NavigationMenu>
         <NavigationMenuList>
