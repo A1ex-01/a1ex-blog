@@ -8,7 +8,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import fs from "fs";
 import { getMessages } from "next-intl/server";
 import { Inter } from "next/font/google";
-import "react-toastify/dist/ReactToastify.css";
 import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 export const generateMetadata = async ({ params }) => {
