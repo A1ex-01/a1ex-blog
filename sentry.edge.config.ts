@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
+  enabled: false,
   dsn: "https://035bc8ac77eb60478715a01e2e28ada6@o4507627885428736.ingest.de.sentry.io/4508211999670352",
 
   // Set tracesSampleRate to 1.0 to capture 100%
