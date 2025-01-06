@@ -1,5 +1,7 @@
+import withBundleAnalyzer from "@next/bundle-analyzer";
 import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
+
 const withNextIntl = createNextIntlPlugin("./i18n");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -31,7 +33,7 @@ const nextConfig = {
   },
   reactStrictMode: false
 };
-export default withSentryConfig(withNextIntl(nextConfig), {
+const nConfig = withSentryConfig(withNextIntl(nextConfig), {
   org: "1-9pl",
   project: "next_blog",
   // An auth token is required for uploading source maps.
@@ -46,3 +48,6 @@ export default withSentryConfig(withNextIntl(nextConfig), {
   // tunnelRoute: "/monitoring-tunnel",
   autoInstrumentServerFunctions: false
 });
+
+const isAnalyze = process.env.ANALYZE === "true";
+export default isAnalyze ? withBundleAnalyzer(nConfig) : nConfig;
