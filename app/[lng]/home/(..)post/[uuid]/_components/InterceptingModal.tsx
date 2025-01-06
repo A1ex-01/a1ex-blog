@@ -22,7 +22,7 @@ export default function InterceptingModal({ post }: InterceptingModalProps) {
             onClick={() => router.back()}
             className="close sticky top-4 my-4 w-full flex justify-end cursor-pointer  text-red-500"
           >
-            <AxIcon icon="line-md:close-circle-twotone" className="text-3xl mr-8" size={48} />
+            <AxIcon icon="line-md:close-circle-twotone" className="mr-8" size={48} />
           </div>
           <div className="wrapper mt-10 bg-white rounded-lg p-4 max-w-7xl mx-auto">
             <div className="topshow max-w-7xl mx-auto">
