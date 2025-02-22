@@ -3,7 +3,8 @@ import { ICategory } from "@/services/types";
 import { notFound } from "next/navigation";
 
 export default async function Category() {
-  const getCateList = async () => {
+  return <>categories</>;
+  const getCateList = async (): Promise<any> => {
     const res = await getCates();
     return res;
   };

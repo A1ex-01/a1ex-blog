@@ -7,7 +7,7 @@ import { ILocale, locales } from "@/config/lng";
 import { useLocale, useTranslations } from "next-intl";
 
 import { usePathname, useRouter } from "@/lib/navigation";
-import AxIcon from "./AxIcon";
+import { TbSelector } from "react-icons/tb";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -48,7 +48,7 @@ export function LocaleSwitcher() {
         <DropdownMenuTrigger asChild>
           <Button variant="outline">
             {t("locale", { locale: locale })}
-            <AxIcon icon={"tabler:selector"} />
+            <TbSelector />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">

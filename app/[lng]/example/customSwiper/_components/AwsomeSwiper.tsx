@@ -1,6 +1,5 @@
-import AxIcon from "@/components/AxIcon";
 import { useMemo, useState } from "react";
-
+import { TbArrowLeft, TbArrowRight } from "react-icons/tb";
 interface AwsomeSwiperProps {}
 const imgs = [
   {
@@ -66,10 +65,10 @@ export default function AwsomeSwiper(props: AwsomeSwiperProps) {
     >
       <div className="btns flex text-lg gap-2 items-center absolute top-4 left-1/2 -translate-x-1/2">
         <div className="left cursor-pointer" onClick={onPre}>
-          <AxIcon icon="tabler:arrow-left" />
+          <TbArrowLeft />
         </div>
         <div className="right cursor-pointer" onClick={onNext}>
-          <AxIcon icon="tabler:arrow-right" />
+          <TbArrowRight />
         </div>
       </div>
       <div className="swiper absolute flex h-[260px] items-center gap-4 left-1/2 bottom-4">

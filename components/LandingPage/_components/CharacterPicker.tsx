@@ -2,10 +2,10 @@
 import { useMemo } from "react";
 import "swiper/css";
 // import "swiper/css/navigation";
-import AxIcon from "@/components/AxIcon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { landingJAChatBgs } from "@/config/demoData";
 import clsx from "clsx";
+import { TbSquareRoundedFilled } from "react-icons/tb";
 import "swiper/css/pagination";
 import SwiperModelV2 from "./SwiperModelV2";
 // import "@/styles/github-markdown.scss";
@@ -122,8 +122,7 @@ export default function CharacterPicker({
                 setCurrentCharacter(item);
               }}
             >
-              <AxIcon
-                icon={"tabler:square-rounded-filled"}
+              <TbSquareRoundedFilled
                 className={clsx(
                   "cursor-pointer",
                   currentCharacter?.uuid === item.uuid ? "text-[#8f61b3]" : "text-[#E1E1E1]"
