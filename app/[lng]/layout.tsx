@@ -4,7 +4,6 @@ import { getMetadata } from "@/lib/metadata";
 import Providers from "@/providers";
 import { GlobalWrapperScrollProvider } from "@/providers/GlobalWrapperScrollProvider";
 import "@/styles/global.scss";
-import { currentUser } from "@clerk/nextjs/server";
 import { getMessages } from "next-intl/server";
 import { Inter } from "next/font/google";
 import "../globals.css";
@@ -20,7 +19,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const dicts = await getMessages(lng);
-  const user = await currentUser();
+  // const user = await currentUser();
   // const IconTransformCodeFragment = await fs.readFileSync(
   //   "./components/IconTransform/index.tsx",
   //   "utf-8"
