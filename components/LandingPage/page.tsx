@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
-import AxIcon from "../AxIcon";
+import { TbQuoteFilled, TbStarFilled } from "react-icons/tb";
 import CharacterPicker from "./_components/CharacterPicker";
 import IntroList from "./_components/IntroList";
 import UserVoice from "./_components/UserVoice";
@@ -627,7 +627,7 @@ export default function LandingPage() {
           >
             <div className="line left-4 right-4 h-[2px] bg-[#8f61b3] absolute top-2" />
             <div className="line left-4 right-4 h-[2px] bg-[#8f61b3]  text-[#8f61b3] absolute top-2">
-              <AxIcon icon={"tabler:quote-filled"} />
+              <TbQuoteFilled />
             </div>
             <div
               style={{
@@ -653,7 +653,7 @@ export default function LandingPage() {
                 )}
               >
                 <div className="star hidden md:block">
-                  <AxIcon icon={"tabler:star-filled"} size={26} />
+                  <TbStarFilled size={26} />
                 </div>
                 <div className="desc text-sm md:w-[4em]">{i?.name}</div>
               </div>

@@ -3,7 +3,7 @@
 import { useHover } from "ahooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, useCallback, useMemo, useRef } from "react";
-import AxIcon from "../AxIcon";
+import { TbArrowBadgeLeftFilled, TbArrowBadgeRightFilled, TbDots } from "react-icons/tb";
 import {
   Pagination,
   PaginationContent,
@@ -25,13 +25,13 @@ export function NavigationDots({ type }: { type: "left" | "right" }) {
   const isHovered = useHover(wrapperRef);
   const hoverDom = useMemo(() => {
     if (type === "left") {
-      return <AxIcon icon={"tabler:arrow-badge-left-filled"} />;
+      return <TbArrowBadgeLeftFilled />;
     }
-    return <AxIcon icon={"tabler:arrow-badge-right-filled"} />;
+    return <TbArrowBadgeRightFilled />;
   }, [type]);
   return (
     <div className="cursor-pointer" ref={wrapperRef}>
-      {isHovered ? hoverDom : <AxIcon icon={"tabler:dots"} />}
+      {isHovered ? hoverDom : <TbDots />}
     </div>
   );
 }

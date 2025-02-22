@@ -1,13 +1,13 @@
 "use client";
 import Waline from "@/app/[lng]/post/[uuid]/_components/Waline";
-import AxIcon from "@/components/AxIcon";
 import { Badge } from "@/components/ui/badge";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { IPost } from "@/services/types";
 import { useRouter } from "next/navigation";
+import {} from "react-icons";
+import { TbX } from "react-icons/tb";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
 interface InterceptingModalProps {
   post: IPost;
 }
@@ -22,7 +22,7 @@ export default function InterceptingModal({ post }: InterceptingModalProps) {
             onClick={() => router.back()}
             className="close sticky top-4 my-4 w-full flex justify-end cursor-pointer  text-red-500"
           >
-            <AxIcon icon="line-md:close-circle-twotone" className="mr-8" size={48} />
+            <TbX size={48} className="mr-8" />
           </div>
           <div className="wrapper mt-10 bg-white rounded-lg p-4 max-w-7xl mx-auto">
             <div className="topshow max-w-7xl mx-auto">
