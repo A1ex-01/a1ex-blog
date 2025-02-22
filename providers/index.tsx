@@ -2,7 +2,7 @@
 import { timeZone } from "@/config/global";
 import { ILocale } from "@/config/lng";
 import { ICodeFragment } from "@/types";
-import { arSA, deDE, enUS, esES, frFR, jaJP, koKR, ptPT, zhCN, zhTW } from "@clerk/localizations";
+import { enUS, jaJP, koKR, zhCN } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
 import * as React from "react";
@@ -14,17 +14,17 @@ interface ProvidersProps {
   lng: ILocale;
   codeFragments: ICodeFragment[];
 }
-const localeMap = {
+const localeMap: Record<ILocale, any> = {
   en: enUS,
   zh: zhCN,
-  tw: zhTW,
+  // tw: zhTW,
   ja: jaJP,
-  ko: koKR,
-  fr: frFR,
-  es: esES,
-  de: deDE,
-  pt: ptPT,
-  ar: arSA
+  ko: koKR
+  // fr: frFR,
+  // es: esES,
+  // de: deDE,
+  // pt: ptPT,
+  // ar: arSA
 };
 export default function Providers({ children, dicts, lng, codeFragments }: ProvidersProps) {
   return (
