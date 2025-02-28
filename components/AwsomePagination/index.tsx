@@ -48,9 +48,12 @@ export function AwsomePagination({
 
   const totalPageCount = Math.ceil(totalCount / pageSize);
 
-  const buildLink = useCallback((newPage: number) => {
-    return `${parentPath}/${newPage}`;
-  }, []);
+  const buildLink = useCallback(
+    (newPage: number) => {
+      return `${parentPath}/${newPage}`;
+    },
+    [parentPath]
+  );
   const renderPageNumbers = useCallback(() => {
     const items: ReactNode[] = [];
     if (totalPageCount <= maxVisiblePages) {
@@ -115,7 +118,7 @@ export function AwsomePagination({
     }
 
     return items;
-  }, []);
+  }, [buildLink, maxVisiblePages, page, totalPageCount]);
 
   return (
     <div className="flex flex-col md:flex-row h-9 overflow-y-hidden  items-center gap-3 w-full">

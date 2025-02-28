@@ -15,12 +15,12 @@ interface IntroListProps {
 
 export default function IntroList({ intros, toThreads }: IntroListProps) {
   const [index, setIndex] = useState(0);
-  const onPre = () => {
-    index > 0 ? setIndex(index - 1) : setIndex(intros.length - 1);
-  };
-  const onNext = () => {
-    index < intros.length - 1 ? setIndex(index + 1) : setIndex(0);
-  };
+  // const onPre = () => {
+  //   index > 0 ? setIndex(index - 1) : setIndex(intros.length - 1);
+  // };
+  // const onNext = () => {
+  //   index < intros.length - 1 ? setIndex(index + 1) : setIndex(0);
+  // };
   const currIntro = useMemo(() => ({ ...intros[index], index }), [index, intros]);
   return (
     <div className="w-full min-h-[45vh]">

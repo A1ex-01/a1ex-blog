@@ -28,12 +28,6 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
-        {/* <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/PreloadJS/1.0.1/preloadjs.min.js"
-          integrity="sha512-fEAYokehnF/e5P+Whrp7YAWBQGqQtimX1DrFBu21J+4WI2wCM/z+kTHiRMCcfYUqHbCcCADC9QivGn7Q75IQig=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        /> */}
       </head>
 
       <body className={`${inter.className} antialiased`}>
