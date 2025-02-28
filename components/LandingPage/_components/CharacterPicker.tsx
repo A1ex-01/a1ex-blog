@@ -14,20 +14,18 @@ interface CharacterPickerProps {
   currentCharacter: any;
   setCurrentCharacter: (s: any) => void;
 }
-
+const chatsByCharacter: Record<string, string[]> = {
+  "a84d58d0-049a-4e32-b323-670ea96b9e1e": ["hey", "hello"],
+  "d5a0c7b1-89e0-4eba-be83-8780a58aff8c": ["hey", "hello"],
+  "f546a92e-1c67-4a8b-bb49-85a5d8f17ad3": ["hey", "hello"],
+  "89883914-7764-423b-80db-39499d9c892a": ["hey", "hello"],
+  "9a7458f8-a9c7-4b7b-a2b0-d83179156f9f": ["hey", "hello"]
+} as const;
 export default function CharacterPicker({
   characters,
   currentCharacter,
   setCurrentCharacter
 }: CharacterPickerProps) {
-  const chatsByCharacter: Record<string, string[]> = {
-    "a84d58d0-049a-4e32-b323-670ea96b9e1e": ["hey", "hello"],
-    "d5a0c7b1-89e0-4eba-be83-8780a58aff8c": ["hey", "hello"],
-    "f546a92e-1c67-4a8b-bb49-85a5d8f17ad3": ["hey", "hello"],
-    "89883914-7764-423b-80db-39499d9c892a": ["hey", "hello"],
-    "9a7458f8-a9c7-4b7b-a2b0-d83179156f9f": ["hey", "hello"]
-  };
-
   const currChats = useMemo(() => {
     return chatsByCharacter[currentCharacter?.uuid] || [];
   }, [currentCharacter?.uuid]);

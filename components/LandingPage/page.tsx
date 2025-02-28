@@ -493,7 +493,6 @@ export default function LandingPage() {
   }, [progress]);
   useEffect(() => {
     if (PERSONAREf?.current && wrapperRef?.current && characters.length > 0) {
-      console.log("🚀 ~ useEffect ~ PERSONAREf:", PERSONAREf);
       ScrollTrigger.defaults({
         scroller: wrapperRef.current
       });
@@ -527,7 +526,7 @@ export default function LandingPage() {
         }
       });
     }
-  }, [PERSONAREf?.current, characters, currentCharacter]);
+  }, [characters, currentCharacter]);
   return (
     <div ref={wrapperRef} className="w-full relative h-full overflow-y-scroll">
       <section

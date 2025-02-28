@@ -1,18 +1,23 @@
-# Ignore artifacts:
+# Build outputs
 build
-coverage
-node_modules
-apps/*/node_modules
-next
-public
-# Ignore all HTML files:
-**/*.html
-dist/
+dist
 .next
-# .开头的任何文件
-.*
-# 排除 .gitignore 本身
-!/.gitignore
+coverage
+
+# Dependencies
 node_modules
+**/node_modules
+
+# Public assets
+public
+
+# Generated files
 .umi
 .umi-production
+
+# HTML files
+**/*.html
+
+# Dot files except .gitignore
+.*
+!/.gitignore
