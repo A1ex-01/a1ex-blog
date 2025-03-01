@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://a1ex.club
+
+# Sitemaps
+Sitemap: https://a1ex.club/sitemap.xml
