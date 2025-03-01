@@ -1,15 +1,12 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPathname } from "@/lib/navigation";
-import { getNotionBlogs } from "@/services/common";
-import { INotionBlog } from "@/types";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
-export default async function Tools({ params: { lng } }) {
+export default async function Tools({ params: { lng } }: { params: { lng: string } }) {
   const t = await getTranslations("Basic");
-  const { data, success } = await getNotionBlogs(process.env.NEXT_PUBLIC_NOTION_DATABASE_BLOG_ID);
-  if (!success) return notFound();
+  // const { data, success } = await getNotionBlogs(process.env.NEXT_PUBLIC_NOTION_DATABASE_BLOG_ID);
+  // if (!success) return notFound();
   const tools = [
     {
       title: t("transformer"),
@@ -34,7 +31,7 @@ export default async function Tools({ params: { lng } }) {
           ))}
         </div>
       </main>
-      <div className="my-10 notionblogs">
+      {/* <div className="my-10 notionblogs">
         <h2 className="text-3xl font-bold my-10 text-primary">NotionBlogs</h2>
         <div className="list grid grid-cols-3  gap-10">
           {data?.map((item: INotionBlog) => (
@@ -52,7 +49,7 @@ export default async function Tools({ params: { lng } }) {
             </Card>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
