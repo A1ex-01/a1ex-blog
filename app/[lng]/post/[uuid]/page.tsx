@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/badge";
 import { getMetadata } from "@/lib/metadata";
 import { getPost } from "@/services/common";
 import { IPost } from "@/services/types";
-import Shiki from "@shikijs/markdown-it";
 import "github-markdown-css";
 import MarkdownIt from "markdown-it";
 import { notFound } from "next/navigation";
@@ -38,6 +37,7 @@ export const generateMetadata = async ({
 };
 
 export default async function page({ params: { uuid } }: pageProps) {
+  console.time("page");
   const res = await getData(uuid);
   if (!res?.success) notFound();
   const post: IPost = res.data;
@@ -46,14 +46,15 @@ export default async function page({ params: { uuid } }: pageProps) {
     breaks: true,
     typographer: true
   });
-  md.use(
-    await Shiki({
-      themes: {
-        light: "vitesse-light"
-      }
-    })
-  );
+  // md.use(
+  //   await Shiki({
+  //     themes: {
+  //       light: "vitesse-light"
+  //     }
+  //   })
+  // );
   const mdContent = md.render(post.notion.content);
+  console.timeEnd("page");
   return (
     <div
       style={{ backgroundImage: `url(${post?.notion?.cover})` }}
