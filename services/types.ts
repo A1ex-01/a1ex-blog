@@ -6,6 +6,13 @@ export interface IPost {
   userDetail: UserDetail;
   notion: Notion;
 }
+
+export interface IRes<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+}
+
 export interface Notion {
   pageId: string;
   cover: string;

@@ -79,3 +79,7 @@
 .vitesse-light {
   background-color: #f6f8fa !important;
 }
+
+.hover-parent:hover .hover-show-child {
+  opacity: 1;
+}

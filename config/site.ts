@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "a1ex`s blog",
   description: "a1ex`s blog",
-  url: "http://a1ex.vip",
+  url: "http://a1ex.club",
   ICP: "赣ICP备2022002397号-2",
   navItems: [
     {

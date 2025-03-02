@@ -1,48 +1,21 @@
-import { STATUSCODE } from "@/config/global";
 import { ILocale } from "@/config/lng";
 import toast from "react-hot-toast";
+import { IRes } from "./types";
 
 export function isClient() {
   return typeof window !== "undefined";
 }
-function withError(res: Response) {
-  if (res.status === 500) {
-    isClient() && res?.message && toast(res.statusText);
+function withError<T>(res: IRes<T>) {
+  const isClient = typeof window !== "undefined";
+  if (isClient) {
+    toast(res?.message || "服务器错误");
   }
 
-  if (res?.code === 4012) {
-    //
-    if (isClient()) {
-      localStorage.removeItem("accessToken");
-      res?.message &&
-        toast(res?.message || "", {
-          type: "error"
-        });
-    }
-  }
-  if (res?.code === 5002) {
-    //
-    if (typeof window !== "undefined") {
-      res?.message &&
-        toast(res?.message || "", {
-          type: "error"
-        });
-    }
-  }
-  if (res?.code === STATUSCODE.NOLIMIT) {
-    if (typeof window !== "undefined") {
-      res?.message &&
-        toast(res?.message || "", {
-          type: "error"
-        });
-    }
-  }
   return res;
 }
-function withHeader(h, lng?: ILocale) {
+function withHeader(h: any) {
   if (typeof window !== "undefined") {
     const accessToken = localStorage.getItem("accessToken");
-
     if (accessToken) {
       h["Authorization"] = `${accessToken}`;
     }
@@ -60,13 +33,13 @@ export class Request {
       Request.lng = lng;
     }
   }
-  get(url: string, params: any, lng?: ILocale) {
+  get<T>(url: string, params: any) {
     const paramsData = new URLSearchParams();
     Object.keys(params).map((item) => {
       paramsData.append(item, params[item]);
     });
     let h = {};
-    withHeader(h, lng);
+    withHeader(h);
 
     return fetch(`${this.baseURL}${url}?${paramsData.toString()}`, {
       method: "GET",
@@ -79,7 +52,7 @@ export class Request {
       }
     })
       .then((res) => {
-        return res.json();
+        return res.json() as Promise<IRes<T>>;
       })
       .then((res) => {
         return withError(res);
@@ -89,9 +62,9 @@ export class Request {
         // e?.message && toast(e?.message);
       });
   }
-  post(url: string, data: any, lng?: ILocale) {
+  post<T>(url: string, data: any) {
     let h = {};
-    withHeader(h, lng);
+    withHeader(h);
     // const formData = new FormData();
     // if (data || {}) {
     //   Object.keys(data).map((item) => {
@@ -112,19 +85,18 @@ export class Request {
       }
     })
       .then((res) => {
-        return res.json();
+        return res.json() as Promise<IRes<T>>;
       })
       .then((res) => {
         return withError(res);
       })
       .catch((e) => {
         console.log(e, "---");
-        e.message && toast(e.message);
       });
   }
-  put(url: string, data: any, lng?: ILocale) {
+  put<T>(url: string, data: any) {
     let h = {};
-    withHeader(h, lng);
+    withHeader(h);
 
     return fetch(`${this.baseURL}${url}`, {
       method: "PUT",
@@ -138,7 +110,7 @@ export class Request {
       }
     })
       .then((res) => {
-        return res.json();
+        return res.json() as Promise<IRes<T>>;
       })
       .then((res) => {
         return withError(res);
@@ -148,9 +120,9 @@ export class Request {
         toast?.(e.message);
       });
   }
-  delete(url: string, data: any, lng?: ILocale) {
+  delete<T>(url: string, data: any) {
     let h = {};
-    withHeader(h, lng);
+    withHeader(h);
 
     return fetch(`${this.baseURL}${url}`, {
       method: "DELETE",
@@ -164,19 +136,16 @@ export class Request {
       }
     })
       .then((res) => {
-        return res.json();
+        return res.json() as Promise<IRes<T>>;
       })
       .then((res) => {
         return withError(res);
       })
-      .catch((e) => {
-        console.log(e, "---");
-        toast?.(e.message);
-      });
+      .catch((e) => {});
   }
-  postData(url: string, formData: any, lng?: ILocale) {
+  postData<T>(url: string, formData: any) {
     let h = {};
-    withHeader(h, lng);
+    withHeader(h);
 
     return fetch(`${this.baseURL}${url}`, {
       method: "POST",
@@ -190,18 +159,17 @@ export class Request {
       }
     })
       .then((res) => {
-        return res.json();
+        return res.json() as Promise<IRes<T>>;
       })
       .then((res) => {
         return withError(res);
       })
       .catch((e) => {
         console.log(e, "---");
-        toast?.(e.message);
       });
   }
 }
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 export { BASE_URL };
 const request = new Request(BASE_URL);
 export default request;
