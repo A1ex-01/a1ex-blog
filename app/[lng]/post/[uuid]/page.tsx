@@ -3,6 +3,8 @@ import { getMetadata } from "@/lib/metadata";
 import { getPost } from "@/services/common";
 import { IPost } from "@/services/types";
 import "github-markdown-css";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 import MarkdownIt from "markdown-it";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -37,14 +39,24 @@ export const generateMetadata = async ({
 };
 
 export default async function page({ params: { uuid } }: pageProps) {
-  console.time("page");
   const res = await getData(uuid);
   if (!res?.success) notFound();
   const post: IPost = res.data;
   const md: MarkdownIt = new MarkdownIt({
     html: true, //
     breaks: true,
-    typographer: true
+    typographer: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          const content = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value;
+
+          return `<div class="hljs-container relative pt-1 hover-parent"><div class="text-xs transition-opacity duration-300 opacity-0 hover-show-child absolute left-0 -top-3 text-[#3c3c438f]">${lang}</div>${content}</div>`;
+        } catch (__) {}
+      }
+
+      return '<pre><code class="hljs">' + md.utils.escapeHtml(str) + "</code></pre>";
+    }
   });
   // md.use(
   //   await Shiki({
@@ -54,7 +66,6 @@ export default async function page({ params: { uuid } }: pageProps) {
   //   })
   // );
   const mdContent = md.render(post.notion.content);
-  console.timeEnd("page");
   return (
     <div
       style={{ backgroundImage: `url(${post?.notion?.cover})` }}
@@ -63,13 +74,16 @@ export default async function page({ params: { uuid } }: pageProps) {
       <div className="wrapper  max-w-7xl mt-10 bg-white rounded-lg p-4 mx-auto">
         <div className="topshow mx-auto">
           <h2 className="text-3xl text-primary font-bold">{post.notion?.title}</h2>
-          <h3 className="text-lg mt-3">{post.notion?.title}</h3>
-          {post.notion.category?.name && (
-            <Badge className="my-4" color="primary">
-              {post.notion?.category?.name}
-            </Badge>
-          )}
+          <div className="flex gap-2 items-center">
+            <p>Category：</p>
+            {post.notion.category?.name && (
+              <Badge className="my-4" color="primary">
+                {post.notion?.category?.name}
+              </Badge>
+            )}
+          </div>
           <div className="tags flex gap-2">
+            <p>Tags：</p>
             {post.notion?.tags?.map((tag) => (
               <Badge variant={"secondary"} key={tag.id}>
                 {tag.name}
