@@ -95,3 +95,11 @@ export interface ICodeFragment {
   title: "IconTransform";
   fragment: string;
 }
+
+export interface IOgpData {
+  pageUrl: string;
+  title: string;
+  description: string;
+  faviconUrl: string;
+  ogImgUrl: string;
+}
