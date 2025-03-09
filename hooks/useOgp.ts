@@ -6,7 +6,7 @@ export function useOgp(url: string) {
     return res.json();
   }
   const { data, error, loading } = useRequest(getOgp, {
-    loadingDelay: 3000
+    loadingDelay: 0
   });
   return { data, error, loading };
 }

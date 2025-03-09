@@ -1,10 +1,8 @@
-import { JSDOM } from "jsdom";
-
 import { IOgpData } from "@/types";
+import * as cheerio from "cheerio";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function GET(req: NextApiRequest, res: NextApiResponse<IOgpData>) {
-  // クエリパラメタからURL情報を受け取り、エンコードする
   //   const { url } = req.query;
   const url = req.url;
   const urlObj = new URL(url as string);
@@ -19,45 +17,36 @@ async function GET(req: NextApiRequest, res: NextApiResponse<IOgpData>) {
   }
 
   try {
-    const response = await fetch(encodeURL)
+    const response = await fetch(encodeURL, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+      },
+      signal: AbortSignal.timeout(2000)
+    })
       .then((res) => res.text())
       .then((text) => {
-        const dom = new JSDOM(text);
+        const $ = cheerio.load(text);
 
-        const meta = dom.window.document.head.querySelectorAll("meta");
-        const titleTag = dom.window.document.title;
+        // 获取 TDK 信息
+        const title = $("title").text().trim();
+        const description = $('meta[name="description"]').attr("content") || "";
+        const keywords = $('meta[name="keywords"]').attr("content") || "";
 
-        const tagsContainingOg = Array.from(meta).filter((tag) => {
-          const property = tag.getAttribute("property");
-          const name = tag.getAttribute("name");
-          const checkOg = (text: string) => text.substring(0, 3) === "og:";
+        // 获取 Open Graph 信息
+        const ogTitle = $('meta[property="og:title"]').attr("content") || title;
+        const ogDescription = $('meta[property="og:description"]').attr("content") || description;
+        const ogImage = $('meta[property="og:image"]').attr("content") || "";
+        const ogUrl = $('meta[property="og:url"]').attr("content") || encodeURL;
+        const ogType = $('meta[property="og:type"]').attr("content") || "";
 
-          return checkOg(property ?? "") || checkOg(name ?? "");
-        });
-
-        const ogp = tagsContainingOg.reduce((previous: any, tag: Element) => {
-          // property属性かname属性かを判定
-          const attr = tag.hasAttribute("property")
-            ? tag.getAttribute("property")
-            : tag.getAttribute("name");
-
-          const key = attr?.trim().replace("og:", "") ?? "";
-
-          const content = tag.getAttribute("content") ?? "";
-          previous[key] = content;
-
-          return previous;
-        }, {});
-
-        const siteUrl = ogp["url"].substring(0, ogp["url"].indexOf("/", 8)) as string;
-
+        const siteUrl = ogUrl.substring(0, ogUrl.indexOf("/", 8)) as string;
         const faviconPath = "/favicon.ico";
-
         const ogpData: IOgpData = {
-          title: titleTag,
-          description: ogp["description"] as string,
+          title: ogTitle || title,
+          description: ogDescription || description,
           faviconUrl: siteUrl + faviconPath,
-          ogImgUrl: ogp["image"] as string,
+          ogImgUrl: ogImage,
           pageUrl: encodeURL as string
         };
 
@@ -74,6 +63,7 @@ async function GET(req: NextApiRequest, res: NextApiResponse<IOgpData>) {
     };
     return new Response(JSON.stringify(obj));
   } catch (error) {
+    console.log("🚀 ~ GET ~ error:", error);
     return new Response(JSON.stringify({ pageUrl: encodeURL, title: "bookmark" }));
   }
 }

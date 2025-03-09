@@ -48,7 +48,6 @@ export default async function page({ params: { uuid } }: pageProps) {
   const res = await getData(uuid);
   if (!res?.success) notFound();
   const post: IPost = res.data;
-  console.log("🚀 ~ page ~ post:", post);
 
   return (
     <div
