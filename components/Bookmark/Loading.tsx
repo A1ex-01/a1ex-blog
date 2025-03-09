@@ -59,7 +59,7 @@ export const LoadingMobile = () => {
 // Presentational Component Container
 export const Loading = () => (
   <>
-    <LoadingMobile />
-    <LoadingDesktop />
+    {/* <LoadingMobile /> */}
+    {/* <LoadingDesktop /> */}
   </>
 );

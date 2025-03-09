@@ -1,7 +1,6 @@
 "use client";
 import { useOgp } from "@/hooks/useOgp";
 import { IOgpData } from "@/types";
-import { Loading } from "./Loading";
 
 interface BookmarkViewProps {
   ogp: IOgpData;
@@ -40,12 +39,11 @@ const BookmarkView = ({ ogp }: BookmarkViewProps) => (
 );
 
 export const Bookmark = ({ url }: { url: string }) => {
-  console.log("🚀 ~ Bookmark ~ url:", url);
   const { data, error, loading } = useOgp(url);
   // for debug
   if (error) return <p className="text-red-500">bookmark {url} 数据拉取失败</p>;
 
-  if (loading || !data) return <Loading />;
+  if (loading || !data) return "loading bookmark...";
 
   return <BookmarkView ogp={data} />;
 };
