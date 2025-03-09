@@ -1,10 +1,23 @@
 export interface IPost {
   id: string;
   user_id: string;
-  deletedAt: null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: any;
+  publishedAt: string;
   notion_page_id: string;
   userDetail: UserDetail;
-  notion: Notion;
+  notionDetail: INotionDetail;
+}
+export interface INotionDetail {
+  page_id: string;
+  title: string;
+  cover_url: string;
+  content: any;
+  created_at: string;
+  updated_at: string;
+  category?: ICategory;
+  tags?: ITag[];
 }
 
 export interface IRes<T> {
