@@ -28,13 +28,13 @@ export default function HomeSwiper({ posts }: HomeSwiperProps) {
               <img
                 className="w-full object-cover rounded-lg h-[400px]"
                 src={
-                  post.notion?.cover ||
+                  post.notionDetail?.cover_url ||
                   "https://raw.githubusercontent.com/A1ex-01/drawing-board/main/blog/blog-bg.png"
                 }
                 alt=""
               />
               <div className="tags h-7 flex gap-1 absolute top-2 left-2">
-                {post.notion?.tags?.map((tag) => (
+                {post.notionDetail?.tags?.map((tag) => (
                   <Badge key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
                     {tag.name}
                   </Badge>
@@ -42,19 +42,21 @@ export default function HomeSwiper({ posts }: HomeSwiperProps) {
               </div>
               <div className="content bg-black/20 p-4 absolute bottom-0 py-2 w-full">
                 <div className="flex h-7 justify-between gap-2 items-center">
-                  <time className="text-sm text-white/60" dateTime={post.notion?.createdAt}>
-                    {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
+                  <time className="text-sm text-white/60" dateTime={post.notionDetail?.created_at}>
+                    {dayjs(post.notionDetail?.created_at).format("YYYY-MM-DD HH:mm")}
                   </time>
-                  {post.notion?.category?.name && <Badge>{post.notion?.category?.name}</Badge>}
+                  {post.notionDetail?.category?.name && (
+                    <Badge>{post.notionDetail?.category?.name}</Badge>
+                  )}
                 </div>
                 <Link
                   href={`/post/${post.notion_page_id}`}
                   className="text-white text-xl font-[500] py-1 line-clamp-1 overflow-hidden text-ellipsis"
                 >
-                  {post.notion?.title}
+                  {post.notionDetail?.title}
                 </Link>
                 <p className="line-clamp-2 overflow-hidden text-ellipsis mb-2 text-white/80 text-sm">
-                  {post.notion?.content}
+                  {post.notionDetail?.content}
                 </p>
 
                 <div className="user text-white flex gap-2 items-center mt-3 w-full">

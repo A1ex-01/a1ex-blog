@@ -7,16 +7,17 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 export default function PostCard({ post }: { post: IPost }) {
+  console.log("🚀 ~ PostCard ~ post:", post);
   return (
     <div key={post.id} className={"flex items-center"}>
       <div className="w-full relative">
         <img
           className="w-full object-cover rounded-lg h-[266px]"
-          src={post.notion?.cover || "/imgs/bg-cover.jpg"}
+          src={post.notionDetail?.cover_url || "/imgs/bg-cover.jpg"}
           alt=""
         />
         <div className="tags h-7 flex gap-1 absolute top-2 left-2">
-          {post.notion?.tags?.map((tag) => (
+          {post.notionDetail?.tags?.map((tag) => (
             <Badge key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
               {tag.name}
             </Badge>
@@ -24,21 +25,21 @@ export default function PostCard({ post }: { post: IPost }) {
         </div>
         <div className="content py-2">
           <div className="flex h-7 justify-between gap-2 items-center">
-            <time className="text-sm text-font-light" dateTime={post.notion?.createdAt}>
-              {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
+            <time className="text-sm text-font-light" dateTime={post.notionDetail?.created_at}>
+              {dayjs(post.notionDetail?.created_at).format("YYYY-MM-DD HH:mm")}
             </time>
-            {post.notion?.category?.name && (
-              <Badge color="primary">{post.notion?.category?.name}</Badge>
+            {post.notionDetail?.category?.name && (
+              <Badge color="primary">{post.notionDetail?.category?.name}</Badge>
             )}
           </div>
           <Link
             href={`/post/${post.notion_page_id}`}
             className="text-font-main text-xl font-[500] py-1 line-clamp-1 overflow-hidden text-ellipsis"
           >
-            {post.notion?.title}
+            {post.notionDetail?.title}
           </Link>
           <p className="line-clamp-2 overflow-hidden text-ellipsis mb-2 text-font-sub text-sm">
-            {post.notion?.content}
+            {post.notionDetail?.content}
           </p>
 
           <div className="user flex gap-2 items-center mt-3">

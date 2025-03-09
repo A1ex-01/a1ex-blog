@@ -2,7 +2,6 @@
 import { siteConfig } from "@/config/site";
 import { getPathname, Link, usePathname } from "@/lib/navigation";
 import { SignedOut, SignInButton } from "@clerk/nextjs";
-
 import { useTranslations } from "next-intl";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbTools } from "react-icons/tb";
@@ -17,7 +16,6 @@ interface NavProps {}
 export default function Nav(props: NavProps) {
   const pathname = usePathname();
   const t = useTranslations("Basic");
-  // 将图标映射提取为常量,避免每次渲染重新创建
   const ICON_MAP = {
     Home: <TbHomeFilled size={26} />,
     Tools: <TbTools size={26} />,
@@ -25,7 +23,7 @@ export default function Nav(props: NavProps) {
   } as const;
 
   return (
-    <nav className="flex gap-10 items-center static top-0 max-w-5xl py-4 mx-auto">
+    <nav className="flex gap-10 items-center sticky z-10 bg-white px-10 rounded-b-md top-0 max-w-5xl py-4 mx-auto">
       <LogoIcon width={30} />
       <NavigationMenu>
         <NavigationMenuList>

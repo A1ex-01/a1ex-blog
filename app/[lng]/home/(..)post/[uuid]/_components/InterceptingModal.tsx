@@ -26,13 +26,13 @@ export default function InterceptingModal({ post }: InterceptingModalProps) {
           </div>
           <div className="wrapper mt-10 bg-white rounded-lg p-4 max-w-7xl mx-auto">
             <div className="topshow max-w-7xl mx-auto">
-              <h2 className="text-3xl text-primary font-bold">{post.notion?.title}</h2>
-              <h3 className="text-lg mt-3">{post.notion?.title}</h3>
-              {post.notion.category?.name && (
-                <Badge className="my-4">{post.notion?.category?.name}</Badge>
+              <h2 className="text-3xl text-primary font-bold">{post.notionDetail?.title}</h2>
+              <h3 className="text-lg mt-3">{post.notionDetail?.title}</h3>
+              {post.notionDetail.category?.name && (
+                <Badge className="my-4">{post.notionDetail?.category?.name}</Badge>
               )}
               <div className="tags flex gap-2">
-                {post.notion?.tags?.map((tag) => (
+                {post.notionDetail?.tags?.map((tag) => (
                   <Badge variant={"secondary"} key={tag.id}>
                     {tag.name}
                   </Badge>
@@ -43,7 +43,7 @@ export default function InterceptingModal({ post }: InterceptingModalProps) {
           <article className="max-w-7xl py-4 mx-auto content">
             <div className="md rounded-lg p-4 bg-white/55">
               <Markdown className={"markdown-body rounded-lg p-4"} remarkPlugins={[remarkGfm]}>
-                {post.notion?.content}
+                {post.notionDetail?.content}
               </Markdown>
             </div>
           </article>

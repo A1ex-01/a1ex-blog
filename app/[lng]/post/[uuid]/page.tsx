@@ -26,17 +26,17 @@ export const generateMetadata = async ({
   if (!res?.success) notFound();
   const post: IPost = res?.data || {};
   return getMetadata({
-    title: post.notion.title,
-    description: post.notion.title || undefined,
+    title: post.notionDetail.title,
+    description: post.notionDetail.title || undefined,
     overrides: {
       openGraph: {
-        title: post.notion.title,
-        description: post.notion.title || undefined,
+        title: post.notionDetail.title,
+        description: post.notionDetail.title || undefined,
         type: "website",
         // TODO: og images
         images: [
           {
-            url: post.notion.cover
+            url: post.notionDetail.cover_url
           }
         ]
       }
@@ -48,26 +48,27 @@ export default async function page({ params: { uuid } }: pageProps) {
   const res = await getData(uuid);
   if (!res?.success) notFound();
   const post: IPost = res.data;
+  console.log("🚀 ~ page ~ post:", post);
 
   return (
     <div
-      style={{ backgroundImage: `url(${post?.notion?.cover})` }}
+      style={{ backgroundImage: `url(${post?.notionDetail?.cover_url})` }}
       className="min-w-screen bg-fixed overflow-hidden"
     >
       <div className="wrapper  max-w-7xl mt-10 bg-white rounded-lg p-4 mx-auto">
         <div className="topshow mx-auto">
-          <h2 className="text-3xl text-primary font-bold">{post.notion?.title}</h2>
+          <h2 className="text-3xl text-primary font-bold">{post.notionDetail?.title}</h2>
           <div className="flex gap-2 items-center">
             <p>Category：</p>
-            {post.notion.category?.name && (
+            {post.notionDetail.category?.name && (
               <Badge className="my-4" color="primary">
-                {post.notion?.category?.name}
+                {post.notionDetail?.category?.name}
               </Badge>
             )}
           </div>
           <div className="tags flex gap-2">
             <p>Tags：</p>
-            {post.notion?.tags?.map((tag) => (
+            {post.notionDetail?.tags?.map((tag) => (
               <Badge variant={"secondary"} key={tag.id}>
                 {tag.name}
               </Badge>
@@ -117,7 +118,7 @@ export default async function page({ params: { uuid } }: pageProps) {
             }}
             className={"markdown-body round-lg p-4"}
           >
-            {post.notion.content}
+            {post.notionDetail?.content}
           </Markdown>
         </div>
       </article>

@@ -21,12 +21,12 @@ export const generateMetadata = async ({
   if (!res?.success) notFound();
   const post: IPost = res?.data || {};
   return getMetadata({
-    title: post.notion?.title,
-    description: post.notion?.title || undefined,
+    title: post.notionDetail?.title,
+    description: post.notionDetail?.title || undefined,
     overrides: {
       openGraph: {
-        title: post.notion?.title,
-        description: post.notion?.title || undefined,
+        title: post.notionDetail?.title,
+        description: post.notionDetail?.title || undefined,
         type: "website"
         // TODO: og images
       }
