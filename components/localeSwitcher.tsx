@@ -4,12 +4,20 @@ import { useParams } from "next/navigation";
 import * as React from "react";
 
 import { ILocale, locales } from "@/config/lng";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { IconCheck, IconSelector } from "@tabler/icons-react";
-import clsx from "clsx";
 import { useLocale, useTranslations } from "next-intl";
 
 import { usePathname, useRouter } from "@/lib/navigation";
+import { TbSelector } from "react-icons/tb";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "./ui/dropdown-menu";
 
 export function LocaleSwitcher() {
   const t = useTranslations("LocaleSwitcher");
@@ -36,23 +44,33 @@ export function LocaleSwitcher() {
 
   return (
     <div className="flex h-full items-center justify-center">
-      <Dropdown>
-        <DropdownTrigger>
-          <Button variant="ghost" endContent={<IconSelector />}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">
             {t("locale", { locale: locale })}
+            <TbSelector />
           </Button>
-        </DropdownTrigger>
-        <DropdownMenu>
-          {locales.map((cur) => (
-            <DropdownItem isDisabled={isPending} key={cur} onClick={() => changeLocale(cur)}>
-              <div className="w-full items-center flex justify-between">
-                <span>{t("locale", { locale: cur })}</span>
-                {locale === cur && <IconCheck className={clsx("ml-auto h-4 w-4 opacity-100")} />}
-              </div>
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>Pick language</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={locale}
+            onValueChange={(e: ILocale) => {
+              console.log(e);
+              changeLocale(e);
+            }}
+          >
+            {locales.map((cur: ILocale) => (
+              <DropdownMenuRadioItem disabled={isPending || locale === cur} key={cur} value={cur}>
+                <div className="w-full cursor-pointer items-center flex justify-between">
+                  <span>{t("locale", { locale: cur })}</span>
+                </div>
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }

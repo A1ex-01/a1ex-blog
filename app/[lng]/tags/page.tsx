@@ -3,7 +3,8 @@ import { ITag } from "@/services/types";
 import { notFound } from "next/navigation";
 
 export default async function Category() {
-  const getTagList = async () => {
+  return <>tags</>;
+  const getTagList = async (): Promise<any> => {
     const res = await getTags();
     return res;
   };

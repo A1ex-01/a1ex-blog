@@ -1,42 +1,46 @@
+"use client";
 // import axios from 'axios'
 import { IPost } from "@/services/types";
-import { Chip } from "@nextui-org/react";
 import dayjs from "dayjs";
 // import CategoryIcon from '@/assets/icon/category.svg'
 // import TagIcon from '@/assets/icon/tag.svg'
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 export default function PostCard({ post }: { post: IPost }) {
   return (
     <div key={post.id} className={"flex items-center"}>
-      <div className="w-full">
+      <div className="w-full relative">
         <img
-          className="w-full object-cover rounded-2xl h-[266px]"
-          src={post.notion?.cover}
+          className="w-full object-cover rounded-lg h-[266px]"
+          src={post.notionDetail?.cover_url || "/imgs/bg-cover.jpg"}
           alt=""
         />
+        <div className="tags h-7 flex gap-1 absolute top-2 left-2">
+          {post.notionDetail?.tags?.map((tag) => (
+            <Badge key={tag.id} className="bg-[#788086]/80 cursor-pointer text-white">
+              {tag.name}
+            </Badge>
+          ))}
+        </div>
         <div className="content py-2">
-          <div className="flex justify-between gap-2">
-            <time className="text-sm text-font-sub-color" dateTime={post.notion?.createdAt}>
-              {dayjs(post.notion?.createdAt).format("YYYY-MM-DD HH:mm")}
+          <div className="flex h-7 justify-between gap-2 items-center">
+            <time className="text-sm text-font-light" dateTime={post.notionDetail?.created_at}>
+              {dayjs(post.notionDetail?.created_at).format("YYYY-MM-DD HH:mm")}
             </time>
-            <Chip color="primary">{post.notion?.category?.name}</Chip>
+            {post.notionDetail?.category?.name && (
+              <Badge color="primary">{post.notionDetail?.category?.name}</Badge>
+            )}
           </div>
           <Link
             href={`/post/${post.notion_page_id}`}
-            className="text-font-color text-xl font-[500] py-1 line-clamp-1 overflow-hidden text-ellipsis"
+            className="text-font-main text-xl font-[500] py-1 line-clamp-1 overflow-hidden text-ellipsis"
           >
-            {post.notion?.title}
+            {post.notionDetail?.title}
           </Link>
-          <p className="text-font-sub-color line-clamp-2 overflow-hidden text-ellipsis h-12">
-            {post.notion?.title}
+          <p className="line-clamp-2 overflow-hidden text-ellipsis mb-2 text-font-sub text-sm">
+            {post.notionDetail?.content}
           </p>
-          <div className="tags flex gap-1">
-            {post.notion?.tags?.map((tag) => (
-              <Chip size="sm" key={tag.id}>
-                {tag.name}
-              </Chip>
-            ))}
-          </div>
+
           <div className="user flex gap-2 items-center mt-3">
             <img
               alt="avatar"

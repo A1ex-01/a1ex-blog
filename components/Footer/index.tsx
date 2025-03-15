@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import Link from "next/link";
 
 interface FooterProps {}
@@ -16,7 +17,7 @@ export default function Footer(props: FooterProps) {
             提供]
           </div>
           <Link href={"https://beian.miit.gov.cn/"} className="text-primary" target="_blank">
-            [赣ICP备2022002397号]
+            [{siteConfig.ICP}]
           </Link>
         </div>
       </div>
