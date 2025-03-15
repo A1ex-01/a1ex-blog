@@ -5,7 +5,8 @@
     "Tags": "タグ",
     "Login": "ログイン",
     "Tools": "ツール",
-    "transformer": "トランス"
+    "transformer": "トランス",
+    "Example": "例"
   },
   "LocaleSwitcher": {
     "label": "言語を変更する",

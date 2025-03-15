@@ -8,10 +8,10 @@ const nextIntlMiddleware = createMiddleware({
 });
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId, redirectToSignIn } = auth();
-  console.log("🚀 ~ clerkMiddleware ~ userId, redirectToSignIn:", userId, redirectToSignIn);
+  const { userId, redirectToSignIn } = await auth();
   const { nextUrl } = req;
-  const isApi = nextUrl.pathname.startsWith("/api/");
+  const pathname = nextUrl.pathname;
+  const isApi = pathname.startsWith("/api/");
 
   if (isApi) {
     return;

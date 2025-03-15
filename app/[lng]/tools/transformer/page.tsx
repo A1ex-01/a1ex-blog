@@ -1,14 +1,12 @@
 "use client";
-import { Chip } from "@nextui-org/react";
 import jsonToTs from "json-to-ts";
 import { useEffect, useState } from "react";
 // import CodeMirror from "./_components/CodeMirror";
+import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-const CodeMirror = dynamic(() => import("./_components/CodeMirror"), { ssr: false });
-export default function Tools() {
-  const t = useTranslations();
-  const [value, setValue] = useState(`{
+import { toast } from "react-hot-toast";
+const template = `{
   "Basic": {
     "Home": "Home",
     "Categories": "Categories",
@@ -16,18 +14,31 @@ export default function Tools() {
     "Login": "Login",
     "Tools": "Tools",
     "transformer": "transformer"
-  },
-  "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, zh {🇨🇳 简体中文} tw {🇭🇰 繁體中文} en {🇺🇸 English} fr {🇫🇷 Français} ja {🇯🇵 日本語} ko {🇰🇷 한국어} es {🇪🇸 Español} de {🇩🇪 Deutsch} pt {🇧🇷 Português} ar {🇦🇪 العربية} other {Unknown}}"
   }
-}`);
+}`;
+const CodeMirror = dynamic(() => import("./_components/CodeMirror"), { ssr: false });
+export default function Tools() {
+  const t = useTranslations("Basic");
+  const [value, setValue] = useState(template);
   const [tsValue, setTsValue] = useState(``);
   const getTsText = (value: string) => {
     try {
       const v = JSON.parse(value);
       const tsV = jsonToTs(v).join("\n");
       setTsValue(tsV);
+      if (value === template) return;
+      toast.success("transform success", {
+        // style: {
+        //   border: "1px solid #713200",
+        //   padding: "16px",
+        //   color: "#713200"
+        // },
+        className: "text-primary"
+        // iconTheme: {
+        //   primary: "#713200",
+        //   secondary: "#FFFAEE"
+        // }
+      });
     } catch (error) {}
   };
   useEffect(() => {
@@ -37,9 +48,7 @@ export default function Tools() {
     <div className="max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold my-10 text-primary">{t("transformer")}</h2>
       <div className="top">
-        <Chip size="lg" color="primary">
-          json to typescript
-        </Chip>
+        <Badge>json to typescript</Badge>
       </div>
       <main className=" my-4 flex w-full">
         <div className="left flex-1">

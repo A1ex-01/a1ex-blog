@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.a1ex.tech
+
+# Sitemaps
+Sitemap: https://www.a1ex.tech/sitemap.xml

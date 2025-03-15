@@ -1,107 +1,56 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { getPathname, Link } from "@/lib/navigation";
-import { getActive } from "@/utils";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import {
-  Button,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle
-} from "@nextui-org/react";
+import { getPathname, Link, usePathname } from "@/lib/navigation";
+import { SignedOut, SignInButton } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { PiListStarBold } from "react-icons/pi";
+import { TbHomeFilled, TbTools } from "react-icons/tb";
 import { LogoIcon } from "../icons";
 import { LocaleSwitcher } from "../localeSwitcher";
 import ScrollBall from "../ScrollBall";
+import { Button } from "../ui/button";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
+
 interface NavProps {}
 
 export default function Nav(props: NavProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("Basic");
+  const ICON_MAP = {
+    Home: <TbHomeFilled size={26} />,
+    Tools: <TbTools size={26} />,
+    Example: <PiListStarBold size={26} />
+  } as const;
 
   return (
-    <Navbar isMenuOpen={isMenuOpen} maxWidth="lg" isBordered>
-      {/* {siteConfig.navItems.map((item) => (
-        <NavbarMenuItem key={item.name} isActive={item.path === pathname}>
-          <Link href={item.path}>{item.name}</Link>
-        </NavbarMenuItem>
-      ))} */}
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle onClick={() => setIsMenuOpen(!isMenuOpen)} />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
-          <LogoIcon width={30} />
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand>
-          <LogoIcon width={32} />
-        </NavbarBrand>
-        {siteConfig.navItems.map((item) => (
-          <NavbarItem key={item.name}>
-            <Button
-              href={item.path}
-              color={getActive(item.path, pathname) ? "primary" : "default"}
-              variant={getActive(item.path, pathname) ? "flat" : "light"}
-              as={Link}
-              startContent={<Image src={item.icon} alt={item.name} width={18} />}
-            >
-              {t(item.keyword)}
-            </Button>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="lg:flex">
-          <LocaleSwitcher />
-        </NavbarItem>
-        <NavbarItem className="lg:flex">
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </NavbarItem>
-        <NavbarItem className="lg:flex">
-          <SignedOut>
-            <SignInButton
-              mode="modal"
-              forceRedirectUrl={getPathname({ href: "/home", locale: "en" })}
-            >
-              <Button
-                color="primary"
-                className="w-full"
-                // onClick={() => setShowSignInModal(true)}
-              >
-                {t("Login")}
-              </Button>
-            </SignInButton>
-          </SignedOut>
-        </NavbarItem>
-        <NavbarItem className="lg:flex">
-          <ScrollBall />
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarMenu>
-        {siteConfig.navItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href={item.path}>
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+    <nav className="flex gap-10 items-center sticky z-10 bg-white px-10 rounded-b-md top-0 max-w-5xl py-4 mx-auto">
+      <LogoIcon width={30} />
+      <NavigationMenu>
+        <NavigationMenuList>
+          {siteConfig.navItems.map((item) => {
+            const isActive = pathname.includes(item.path);
+            return (
+              <NavigationMenuItem key={item.name}>
+                <Link href={item.path}>
+                  <Button variant={isActive ? "default" : "ghost"}>
+                    <span className="mr-2">{ICON_MAP[item.keyword as keyof typeof ICON_MAP]}</span>
+                    {t(item.keyword)}
+                  </Button>
+                </Link>
+              </NavigationMenuItem>
+            );
+          })}
+        </NavigationMenuList>
+      </NavigationMenu>
+      <div className="ml-auto">
+        <LocaleSwitcher />
+      </div>
+      <SignedOut>
+        <SignInButton mode="modal" forceRedirectUrl={getPathname({ href: "/home", locale: "en" })}>
+          <Button color="primary">{t("Login")}</Button>
+        </SignInButton>
+      </SignedOut>
+      <ScrollBall />
+    </nav>
   );
 }

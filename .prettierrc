@@ -5,6 +5,9 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "endOfLine": "auto",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "always",
   "plugins": [
     "prettier-plugin-organize-imports"
   ]
