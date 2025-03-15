@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://a1ex.club
+Host: https://www.a1ex.tech
 
 # Sitemaps
-Sitemap: https://a1ex.club/sitemap.xml
+Sitemap: https://www.a1ex.tech/sitemap.xml
