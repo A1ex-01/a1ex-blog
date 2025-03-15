@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 export default function PostCard({ post }: { post: IPost }) {
-  console.log("🚀 ~ PostCard ~ post:", post);
   return (
     <div key={post.id} className={"flex items-center"}>
       <div className="w-full relative">
