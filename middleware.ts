@@ -20,5 +20,5 @@ export default clerkMiddleware(async (auth, req) => {
 });
 
 export const config = {
-  matcher: ["/", "/(zh|en)/:path*", "/((?!static|.*\\..*|_next).*)"] // Run middleware on API routes],
+  matcher: ["/", "/(zh|en|ja|ko)/:path*", "/((?!static|.*\\..*|_next).*)"] // Run middleware on API routes],
 };
