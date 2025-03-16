@@ -11,6 +11,9 @@ const nextConfig = {
   eslint: {
     // ignoreDuringBuilds: true
   },
+  env: {
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY
+  },
   images: {
     remotePatterns: [
       {
