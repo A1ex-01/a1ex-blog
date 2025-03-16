@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "test:e2e": "playwright test",
-    "postbuild": "next-sitemap"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@clerk/localizations": "^3.4.0",
