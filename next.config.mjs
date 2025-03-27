@@ -55,4 +55,4 @@ const nextConfig = {
 // });
 
 const isAnalyze = process.env.ANALYZE === "true";
-export default isAnalyze ? withBundleAnalyzer(withNextIntl(nextConfig)) : withNextIntl(nextConfig);
+export default isAnalyze ? withBundleAnalyzer(nextConfig) : nextConfig;

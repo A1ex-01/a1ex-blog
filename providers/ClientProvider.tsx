@@ -21,30 +21,12 @@ export default function ClientProvider({ children }: ClientProviderProps) {
         }
       });
     }, 100);
-    // if (typeof window === "undefined") return;
-    // const createjs = window.createjs;
-    // const queue = new createjs.LoadQueue();
-    // queue.on("progress", (progress) => {
-    //   setProgress(progress.loaded);
-    //   console.log("progress", progress.loaded);
-    // });
-
-    // queue.loadManifest([
-    //   {
-    //     id: "/favicon.png",
-    //     src: "/favicon.png"
-    //   }
-    // ]);
-    // queue.on("complete", (e) => {
-    //   console.log("done", queue.getResult("myImage"));
-    // });
   };
   useEffect(() => {
     // initPreloadSource();
   }, []);
   return (
     <>
-      {/* {progress < 1 && <FullPageLoading />} */}
       <Toaster />
       {children}
     </>
