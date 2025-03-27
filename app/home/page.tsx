@@ -10,7 +10,6 @@ export default async function Home() {
       current: 1,
       pageSize: 6
     });
-    console.log("🚀 ~ getPostList ~ res:", res);
     return res;
   };
   const res = await getPostList();
