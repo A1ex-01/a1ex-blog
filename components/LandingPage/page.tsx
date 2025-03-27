@@ -7,7 +7,6 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TbQuoteFilled, TbStarFilled } from "react-icons/tb";
 import CharacterPicker from "./_components/CharacterPicker";
@@ -403,7 +402,6 @@ function getGifUrl(uuid: string) {
   return landingGifList[uuid] || "https://static.bestie.icu/u_img/bestie/S1a_compressed.gif";
 }
 export default function LandingPage() {
-  const t = useTranslations("Basic");
   const bestie_s1Descs = ["1", "2"];
   const bestie_landingV2Users = [userVoice[0], userVoice[2], userVoice[1]];
   const bestie_s2Descs = ["1", "2"];

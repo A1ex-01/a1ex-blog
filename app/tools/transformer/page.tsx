@@ -3,7 +3,6 @@ import jsonToTs from "json-to-ts";
 import { useEffect, useState } from "react";
 // import CodeMirror from "./_components/CodeMirror";
 import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { toast } from "react-hot-toast";
 const template = `{
@@ -18,7 +17,6 @@ const template = `{
 }`;
 const CodeMirror = dynamic(() => import("./_components/CodeMirror"), { ssr: false });
 export default function Tools() {
-  const t = useTranslations("Basic");
   const [value, setValue] = useState(template);
   const [tsValue, setTsValue] = useState(``);
   const getTsText = (value: string) => {
@@ -46,7 +44,7 @@ export default function Tools() {
   }, [value]);
   return (
     <div className="max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold my-10 text-primary">{t("transformer")}</h2>
+      <h2 className="text-3xl font-bold my-10 text-primary">transformer</h2>
       <div className="top">
         <Badge>json to typescript</Badge>
       </div>
