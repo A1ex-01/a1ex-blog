@@ -1,5 +1,5 @@
 "use client";
-import Waline from "@/app/[lng]/post/[uuid]/_components/Waline";
+import Waline from "@/app/post/[uuid]/_components/Waline";
 import { Badge } from "@/components/ui/badge";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { IPost } from "@/services/types";

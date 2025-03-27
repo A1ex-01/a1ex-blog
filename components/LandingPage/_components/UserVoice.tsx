@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 
 interface UserVoiceProps {
   user: {
@@ -13,7 +12,6 @@ interface UserVoiceProps {
 }
 
 export default function UserVoice({ user, children }: UserVoiceProps) {
-  const t = useTranslations("Basic");
   if (user?.index < 2) {
     return (
       <div
