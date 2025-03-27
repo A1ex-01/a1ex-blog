@@ -15,13 +15,9 @@ export function getMetadata({
   function undefinedIfHidden<T>(value: T): T | undefined {
     return hidden ? undefined : value;
   }
-
   return {
     title,
     description: undefinedIfHidden(description),
-    // themeColor: "#000",
-    // manifest: "/site.webmanifest",
-    // robots: hidden ? "noindex" : undefined,
     twitter: undefinedIfHidden({
       card: "summary_large_image",
       title,

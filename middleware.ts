@@ -1,24 +1,16 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-import createMiddleware from "next-intl/middleware";
-import { defaultLocale, locales } from "./config/lng";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const nextIntlMiddleware = createMiddleware({
-  defaultLocale,
-  locales
-});
+const isProtectedRoute = createRouteMatcher([]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId, redirectToSignIn } = await auth();
-  const { nextUrl } = req;
-  const pathname = nextUrl.pathname;
-  const isApi = pathname.startsWith("/api/");
-
-  if (isApi) {
-    return;
-  }
-  return nextIntlMiddleware(req);
+  if (isProtectedRoute(req)) await auth.protect();
 });
 
 export const config = {
-  matcher: ["/", "/(zh|en|ja|ko)/:path*", "/((?!static|.*\\..*|_next).*)"] // Run middleware on API routes],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)"
+  ]
 };

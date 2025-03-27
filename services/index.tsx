@@ -1,4 +1,3 @@
-import { ILocale } from "@/config/lng";
 import toast from "react-hot-toast";
 import { IRes } from "./types";
 
@@ -23,16 +22,11 @@ function withHeader(h: any) {
   }
 }
 export class Request {
-  static lng = "";
   // private baseURL;
   constructor(private baseURL: string) {
     this.baseURL = baseURL;
   }
-  static setLng(lng: ILocale) {
-    if (Request.lng !== lng) {
-      Request.lng = lng;
-    }
-  }
+
   get<T>(url: string, params: any) {
     const paramsData = new URLSearchParams();
     Object.keys(params).map((item) => {
@@ -47,8 +41,7 @@ export class Request {
         revalidate: 10
       },
       headers: {
-        ...h,
-        n2language: Request.lng
+        ...h
       }
     })
       .then((res) => {
@@ -80,8 +73,7 @@ export class Request {
       },
       headers: {
         // "content-type": "application/json; charset=utf-8",
-        ...h,
-        n2language: Request.lng
+        ...h
       }
     })
       .then((res) => {
@@ -105,8 +97,7 @@ export class Request {
         revalidate: 1
       },
       headers: {
-        ...h,
-        n2language: Request.lng
+        ...h
       }
     })
       .then((res) => {
@@ -131,8 +122,7 @@ export class Request {
         revalidate: 1
       },
       headers: {
-        ...h,
-        n2language: Request.lng
+        ...h
       }
     })
       .then((res) => {
@@ -154,8 +144,7 @@ export class Request {
         revalidate: 1
       },
       headers: {
-        ...h,
-        n2language: Request.lng
+        ...h
       }
     })
       .then((res) => {
