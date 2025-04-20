@@ -64,6 +64,7 @@ export default async function page({ params: { uuid } }: pageProps) {
                 {post.notionDetail?.category?.name}
               </Badge>
             )}
+            
           </div>
           <div className="tags flex gap-2">
             <p>Tags：</p>

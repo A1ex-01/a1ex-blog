@@ -1,3 +1,13 @@
+export interface IRes<T> {
+  data: T;
+  success: boolean
+  message: string
+}
+export interface IList<T>{
+  list: T[];
+  total: number
+  hasMore: boolean  
+}
 export interface ICP {
   current?: number;
   pageSize?: number;

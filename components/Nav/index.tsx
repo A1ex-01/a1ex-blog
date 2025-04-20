@@ -40,9 +40,6 @@ export default function Nav(props: NavProps) {
           })}
         </NavigationMenuList>
       </NavigationMenu>
-      {/* <div className="ml-auto">
-        <LocaleSwitcher />
-      </div> */}
       <SignedOut>
         <SignInButton mode="modal" forceRedirectUrl={"/home"}>
           <Button color="primary">Login</Button>

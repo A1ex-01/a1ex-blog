@@ -1,9 +1,9 @@
-import { ICP } from "@/types";
+import { ICP, IList, IRes } from "@/types";
 import request from ".";
 import { IPost } from "./types";
 
 export const getPosts = async (params: ICP) => {
-  return request.get(`/posts`, { ...params });
+  return request.get<IList<IPost>>(`/posts`, { ...params });
 };
 export const getPost = async (uuid: string) => {
   return request.get<IPost>(`/posts/${uuid}`, {});
