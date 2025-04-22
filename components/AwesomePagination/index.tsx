@@ -34,7 +34,7 @@ export function NavigationDots({ type }: { type: "left" | "right" }) {
     </div>
   );
 }
-export function AwsomePagination({
+export function AwesomePagination({
   pageSize,
   totalCount,
   page,

@@ -36,7 +36,15 @@ const nextConfig = {
       }
     ]
   },
-  reactStrictMode: false
+  reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/home/1"
+      }
+    ];
+  }
 };
 // const nConfig = withSentryConfig(withNextIntl(nextConfig), {
 //   org: "1-9pl",

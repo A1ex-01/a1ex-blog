@@ -8,10 +8,6 @@ const examples = [
     path: "example/svgTransform"
   },
   {
-    label: "customSwiper",
-    path: "example/customSwiper"
-  },
-  {
     label: "scrollPage",
     path: "example/scrollPage"
   }

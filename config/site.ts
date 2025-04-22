@@ -7,7 +7,7 @@ export const siteConfig = {
   navItems: [
     {
       name: "首页",
-      path: "/home",
+      path: "/",
       keyword: "Home"
     },
     {

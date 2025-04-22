@@ -10,7 +10,11 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import Markdown from "react-markdown";
 import Waline from "./_components/Waline";
-interface pageProps {}
+interface pageProps {
+  params: {
+    uuid: string;
+  };
+}
 const getData = cache(async (uuid: string) => {
   const res = await getPost(uuid);
   return res;
@@ -64,7 +68,6 @@ export default async function page({ params: { uuid } }: pageProps) {
                 {post.notionDetail?.category?.name}
               </Badge>
             )}
-            
           </div>
           <div className="tags flex gap-2">
             <p>Tags：</p>
