@@ -4,12 +4,8 @@ import Link from "next/link";
 interface ExampleProps {}
 const examples = [
   {
-    label: "svg 过渡变换",
-    path: "example/svgTransform"
-  },
-  {
-    label: "scrollPage",
-    path: "example/scrollPage"
+    label: "home",
+    path: "example"
   }
 ];
 export default function Example(props: ExampleProps) {
