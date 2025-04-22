@@ -1,4 +1,3 @@
-import { locales } from "@/config/lng";
 import fs from "fs";
 import path from "path";
 
@@ -51,26 +50,9 @@ function scanRoutes(directory: string = "app"): RouteInfo[] {
   }
 
   processDirectory(pagesDir);
-  const omitLngRoutes = routes.map((route) => {
-    return {
-      ...route,
-      path: route.path.replace("/lng", "")
-    };
-  });
+
   // 遍历多语言
-  return omitLngRoutes
-    .map((route) => {
-      return locales
-        .map((locale) => {
-          const localizedRoute = {
-            ...route,
-            path: `/${locale}${route.path}`
-          };
-          return localizedRoute;
-        })
-        .flat(2);
-    })
-    .flat(2);
+  return routes;
 }
 
 // 使用示例
