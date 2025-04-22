@@ -1,20 +1,20 @@
-import { AwsomePagination } from "@/components/AwsomePagination";
+import { AwesomePagination } from "@/components/AwesomePagination";
 import PostCard from "@/components/PostCard";
 import { getPosts } from "@/services/common";
 import { IPost } from "@/services/types";
 import { notFound } from "next/navigation";
 
-export default async function Home() {
+export default async function HomeDetail({ params: { page } }: { params: { page: string } }) {
+  if (Number(page) != +page) notFound();
   const getPostList = async () => {
     const res = await getPosts({
-      current: 1,
+      current: +page,
       pageSize: 6
     });
     return res;
   };
   const res = await getPostList();
-
-  if (!res?.success) return notFound();
+  if (!res?.success) notFound();
   const {
     data: { list, total }
   } = res;
@@ -26,7 +26,7 @@ export default async function Home() {
             <PostCard key={item.id} post={item} />
           ))}
         </div>
-        <AwsomePagination parentPath="/home" pageSize={6} page={1} totalCount={total} />
+        <AwesomePagination parentPath="/home" pageSize={6} page={+page} totalCount={total} />
       </main>
     </div>
   );
