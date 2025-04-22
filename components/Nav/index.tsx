@@ -5,8 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbTools } from "react-icons/tb";
-import { LogoIcon } from "../icons";
-import ScrollBall from "../ScrollBall";
+import { IconLogo } from "../icons";
 import { Button } from "../ui/button";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
 
@@ -21,12 +20,13 @@ export default function Nav(props: NavProps) {
   } as const;
 
   return (
-    <nav className="flex gap-10 items-center sticky z-10 bg-white px-10 rounded-b-md top-0 max-w-5xl py-4 mx-auto">
-      <LogoIcon width={30} />
+    <nav className="flex gap-10 items-center sticky z-10 bg-white px-10 rounded-b-md top-0 max-w-5xl py-0 mx-auto">
+      <IconLogo size={60} />
       <NavigationMenu>
         <NavigationMenuList>
           {siteConfig.navItems.map((item) => {
-            const isActive = pathname.includes(item.path);
+            const isActive =
+              item.path !== "/" ? pathname.includes(item.path) : pathname === item.path;
             return (
               <NavigationMenuItem key={item.name}>
                 <Link href={item.path}>
@@ -42,10 +42,12 @@ export default function Nav(props: NavProps) {
       </NavigationMenu>
       <SignedOut>
         <SignInButton mode="modal" forceRedirectUrl={"/home"}>
-          <Button color="primary">Login</Button>
+          <Button className="ml-auto" color="primary">
+            Login
+          </Button>
         </SignInButton>
       </SignedOut>
-      <ScrollBall />
+      {/* <ScrollBall /> */}
     </nav>
   );
 }
