@@ -1,7 +1,6 @@
 "use client";
 
 import { useHover } from "ahooks";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, useCallback, useMemo, useRef } from "react";
 import { TbArrowBadgeLeftFilled, TbArrowBadgeRightFilled, TbDots } from "react-icons/tb";
 import {
@@ -42,10 +41,6 @@ export function AwsomePagination({
   maxVisiblePages = 5,
   parentPath
 }: AwsomePaginationProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   const totalPageCount = Math.ceil(totalCount / pageSize);
 
   const buildLink = useCallback(
