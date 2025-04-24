@@ -5,22 +5,30 @@ import { ICP } from "@/types";
 import { useEventListener, useMount } from "ahooks";
 import { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from "react";
 import ListItem from "./ListItem";
+import { ceil } from "lodash";
 
 interface ListProps {
   className?: string;
   request: (params: ICP) => Promise<IData>;
 }
 
+export interface IListItem {
+  title: string
+  current?: number
+}
+
 export interface IListRef {
-  list: number[];
+  list: IListItem[];
   hasMore: boolean;
   total: number;
   loading: boolean;
+  totalPage: number
+  jumpTo: (current: number) => void
 }
 
 export interface IData {
   success: boolean;
-  list: number[];
+  list: IListItem[];
   hasMore: boolean;
   total: number;
 }
@@ -31,13 +39,20 @@ interface IOptions {
   deps: any[];
 }
 
+
+interface IOnRequestOptions {
+  isReset: boolean
+  isPush: boolean
+}
+
 function List({ className, request }: ListProps, ref: Ref<IListRef | null>) {
-  const [data, setData] = useState<number[]>([]);
+  const [data, setData] = useState<IListItem[]>([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [total, setTotal] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [pulling, setIsPulling] = useState(false)
   useImperativeHandle(ref, () => {
     return {
       list: data,
@@ -46,38 +61,61 @@ function List({ className, request }: ListProps, ref: Ref<IListRef | null>) {
       pageSize,
       loading,
       reset: () => {
-        if (page !== 1) {
-          setPage(1);
-        } else {
-          setData([]);
-          onRequest({ current: 1, pageSize: 10 });
-        }
+        onRequest({ current: 1, pageSize: 10 }, {
+          isReset: true,
+          isPush: true
+        })
       },
-      jumpTo(current: number) {}
+      jumpTo(current: number) {
+        onRequest({ current: current, pageSize: 10 }, {
+          isReset: true,
+          isPush: true
+        })
+      },
+      totalPage: ceil(total / pageSize)
     };
   });
-  const onRequest = async (params: ICP, isJump: boolean = false) => {
-    setLoading(true);
-
+  const onRequest = async (params: ICP, options: IOnRequestOptions) => {
+    const { isReset, isPush } = options || {}
+    if (isPush) {
+      setLoading(true);
+    } else {
+      setIsPulling(true)
+    }
     const res = await request(params);
-    console.log("🐽🐽 List.tsx onRequest res:", res);
-    setLoading(false);
+    if (isPush) {
+      setLoading(false);
+    } else {
+      setIsPulling(false)
+    }
     if (res.success) {
-      if (params.current === 1 || isJump) {
-        setData(res.list);
+      const data = res.list?.map(item => ({
+        ...item,
+        current: params.current
+      }))
+      if (isReset) {
+        setData(data);
       } else {
-        setData((pre) => [...pre, ...res.list]);
+        setData((pre) => {
+          if (isPush) {
+            return [...pre, ...data]
+          } else {
+            return [...data, ...pre]
+          }
+        });
       }
       setHasMore(res.hasMore);
       setTotal(res.total);
-      //   setPage(params.current || 1);
+      setPage(params.current || 1);
       setPageSize(params.pageSize || 10);
     }
   };
-  useMount(() => {});
-  useEffect(() => {
-    onRequest({ current: page, pageSize: 10 });
-  }, [page]);
+  useMount(() => {
+    onRequest({ current: 1, pageSize: 10 }, {
+      isReset: true,
+      isPush: true
+    });
+  });
   const wrapperRef = useRef<HTMLDivElement>(null);
   useEventListener(
     "scroll",
@@ -87,11 +125,20 @@ function List({ className, request }: ListProps, ref: Ref<IListRef | null>) {
       if (scrollTop + clientHeight >= scrollHeight) {
         console.log("🐽🐽 List.tsx onReachBottom", hasMore, page);
         if (hasMore) {
-          setPage((pre) => pre + 1);
+          onRequest({ current: page + 1, pageSize: 10 }, {
+            isReset: false,
+            isPush: true
+          })
         }
       } else if (scrollTop <= 0) {
-        const canPull = page !== 1 && data[0] !== 1;
-        console.log("🐽🐽 List.tsx onReachTop");
+        const canPull = data?.[0]?.current !== 1;
+        if (canPull) {
+          onRequest({ current: page - 1, pageSize: 10 }, {
+            isReset: false,
+            isPush: false
+          })
+        }
+        console.log("🐽🐽 List.tsx onReachTop", canPull);
       }
     },
     {
@@ -100,7 +147,12 @@ function List({ className, request }: ListProps, ref: Ref<IListRef | null>) {
   );
   return (
     <div ref={wrapperRef} className={cn("list flex flex-col gap-4 overflow-y-scroll", className)}>
-      {data?.map((item: number) => <ListItem key={item} item={item + 1} />)}
+      {pulling && (
+        <div className="flex items-center">
+          <Skeleton className="h-10 w-full" />
+        </div>
+      )}
+      {data?.map((item: IListItem, index: number) => <ListItem key={index} item={item} />)}
       {loading && (
         <div className="flex items-center">
           <Skeleton className="h-10 w-full" />
