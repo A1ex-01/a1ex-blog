@@ -1,5 +1,7 @@
+import { IListItem } from "./List";
+
 interface ListItemProps {
-  item: number;
+  item: IListItem;
 }
 
 export default function ListItem({ item }: ListItemProps) {
@@ -12,7 +14,7 @@ export default function ListItem({ item }: ListItemProps) {
       aria-describedby="DndDescribedBy-0"
     >
       <div className="h-2 w-2 shrink-0 rounded-full"></div>
-      <p className="m-0 flex-1 font-medium text-sm">Item {item}</p>
+      <p className="m-0 flex-1 font-medium text-sm">{item.title}</p>
       <span className="relative flex overflow-hidden rounded-full h-4 w-4 shrink-0">
         <img
           className="aspect-square h-full w-full"
