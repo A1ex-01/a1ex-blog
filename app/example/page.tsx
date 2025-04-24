@@ -5,7 +5,11 @@ interface ExampleProps {}
 const examples = [
   {
     label: "home",
-    path: "example"
+    path: ""
+  },
+  {
+    label: "无限分页跳转滚动",
+    path: "/example/InfiniteJumpPaginationScroll"
   }
 ];
 export default function Example(props: ExampleProps) {

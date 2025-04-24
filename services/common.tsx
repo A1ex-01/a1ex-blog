@@ -1,4 +1,4 @@
-import { ICP, IList, IRes } from "@/types";
+import { ICP, IList } from "@/types";
 import request from ".";
 import { IPost } from "./types";
 
