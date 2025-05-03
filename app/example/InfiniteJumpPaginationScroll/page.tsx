@@ -46,7 +46,6 @@ export default function InfiniteJumpPaginationScroll(props: InfiniteJumpPaginati
         request={getData}
         className="gap-4 w-[300px] h-[300px] mx-auto"
         paginationRender={({ current, loading, pulling }, totalPage) => {
-          
           return (
             <div className="flex gap-4">
               {[1, 2, 3, 4].map((item, index) => (
