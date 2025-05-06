@@ -4,7 +4,7 @@ import { SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiListStarBold } from "react-icons/pi";
-import { TbHomeFilled, TbTools } from "react-icons/tb";
+import { TbHomeFilled, TbMessage, TbTools } from "react-icons/tb";
 import { IconLogo } from "../icons";
 import { Button } from "../ui/button";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
@@ -16,7 +16,8 @@ export default function Nav(props: NavProps) {
   const ICON_MAP = {
     Home: <TbHomeFilled size={26} />,
     Tools: <TbTools size={26} />,
-    Example: <PiListStarBold size={26} />
+    Example: <PiListStarBold size={26} />,
+    Chat: <TbMessage size={26} />
   } as const;
 
   return (
