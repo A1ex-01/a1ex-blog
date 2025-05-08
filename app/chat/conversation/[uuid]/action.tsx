@@ -4,10 +4,14 @@ import { Spinner } from "@/components/ui/spinner";
 import { currentUser, User } from "@clerk/nextjs/server";
 import { Fragment, ReactNode, Suspense } from "react";
 import { v4 as uuid } from "uuid";
-import { DeleteAllNodesWithMessageId } from "./delete-all-nodes-with-message-id";
+import { DeleteAllNodesWithMessageId } from "./_components/DeleteAllNodesWithMessageId";
+import {
+  AssistantMessageWrapper,
+  ParseToMarkdown,
+  UserMessageWrapper
+} from "./_components/TemplateUI";
 import { getLlmStream } from "./llm";
-import { createMarkdownBlockGeneratorFromLlmReader } from "./parser";
-import { AssistantMessageWrapper, ParseToMarkdown, UserMessageWrapper } from "./render-message";
+import { createMarkdownBlockGeneratorFromLlmReader } from "./tools/parser";
 const getMessages = async (conversationId: string): Promise<Message[]> => {
   const messages = await getMessagesByConversation(conversationId);
   return messages;
@@ -21,7 +25,6 @@ export const getMessageReactNode = async (
   messageContent: string | null
 ): Promise<ReactNode> => {
   const user = await currentUser();
-  console.log("🐽🐽 action.tsx user:", user);
   if (messageContent !== null) {
     await createMessage({
       conversationId,
@@ -33,7 +36,7 @@ export const getMessageReactNode = async (
   }
 
   const messages = await getMessages(conversationId);
-  const llmStream = await getLlmStream(messages);
+  const llmStream = await getLlmStream(messages, user!);
 
   const StreamAssistantMessage = async () => {
     // For a new message to LLM, you need to send all previous messages

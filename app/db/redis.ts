@@ -86,3 +86,17 @@ export async function getMessagesByConversation(conversationId: string): Promise
   //     new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   // ); // TODO: this sort is probably not needed, because we add messages in order
 }
+
+export async function getConversationsByUser(userId: string): Promise<Conversation[]> {
+  // Get all conversation IDs for this user in reverse chronological order (newest first)
+  // We use a sorted set (zset) with timestamp as score to maintain conversation order
+  // In Redis, 0 is the start index and -1 means "until the end of the list"
+  const ids = await redis.zrevrange(`user:${userId}:conversations`, 0, -1);
+  if (!ids.length) return [];
+
+  const conversations = await Promise.all(ids.map((id) => redis.get(`conversation:${id}`)));
+
+  return conversations.filter(Boolean).map((str) => JSON.parse(str!));
+}
+
+// 表结构：

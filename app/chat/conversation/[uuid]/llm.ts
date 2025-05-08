@@ -1,7 +1,9 @@
 import { Message } from "@/app/db/redis";
 import { deepseek } from "@ai-sdk/deepseek";
+import { User } from "@clerk/nextjs/server";
 import { CoreMessage, streamText } from "ai";
-export const getLlmStream = async (messages: Message[]) => {
+import { pick } from "lodash";
+export const getLlmStream = async (messages: Message[], user: User) => {
   // const userInformation = (await getUserInformation()).join(" ");
 
   return await streamText({
@@ -13,7 +15,11 @@ export const getLlmStream = async (messages: Message[]) => {
       },
       {
         role: "system",
-        content: `以下是我們瞭解到關於該使用者的一些資訊: 名字-${"a1ex"}`
+        content: `你是一个给前端开发者解疑答惑的专业顾问，请以中文回答!!!!`
+      },
+      {
+        role: "system",
+        content: `以下是我們了解到关于该使用者的一些资讯: ${JSON.stringify(pick(user, ["createdAt", "id", "firstName", "lastName", "email", "username"]))}`
       },
       {
         role: "system",
