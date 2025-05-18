@@ -38,7 +38,10 @@ export const GlobalWrapperScrollProvider: React.FC<{ children: React.ReactNode }
 
   return (
     <GlobalWrapperScrollContext.Provider value={{ scroll, progress }}>
-      <div ref={wrapperRef} className="wrapper h-screen w-screen overflow-y-scroll scrollable">
+      <div
+        ref={wrapperRef}
+        className="wrapper h-screen w-screen overflow-y-scroll scrollable flex flex-col"
+      >
         {children}
       </div>
     </GlobalWrapperScrollContext.Provider>

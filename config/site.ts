@@ -19,6 +19,11 @@ export const siteConfig = {
       name: "示例",
       path: "/example",
       keyword: "Example"
+    },
+    {
+      name: "Chat",
+      path: "/chat",
+      keyword: "Chat"
     }
   ]
 };

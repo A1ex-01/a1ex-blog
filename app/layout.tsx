@@ -37,7 +37,7 @@ export default async function RootLayout({
         >
           <GlobalWrapperScrollProvider>
             <Nav />
-            <div className="mx-auto">{children}</div>
+            <div className="flex-1 max-w-5xl w-full mx-auto">{children}</div>
             <Footer />
           </GlobalWrapperScrollProvider>
         </Providers>
