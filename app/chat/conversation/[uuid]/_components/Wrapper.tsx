@@ -1,6 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { ReactNode, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { TbLoader, TbSend } from "react-icons/tb";
 
 interface WrapperProps {
   conversationUuid: string;
@@ -19,10 +21,10 @@ export default function Wrapper({
 }: WrapperProps) {
   const inputRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [inputValue, setInputValue] = useState("hello");
+  const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<ReactNode[]>([initialMessagesReactNode]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  const { pending } = useFormStatus();
   return (
     <>
       <div className="flex flex-col gap-4 flex-1 overflow-y-scroll">
@@ -43,9 +45,7 @@ export default function Wrapper({
         ref={formRef}
         action={async () => {
           if (!inputValue.trim()) return;
-          console.log("inputValue", inputValue);
           const newNode = await getMessageReactNode(conversationUuid, inputValue, false);
-
           setMessages((prev) => [...prev, newNode]);
           setInputValue("");
         }}
@@ -57,14 +57,16 @@ export default function Wrapper({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="w-full px-3 py-2 pr-12 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Type a message... (Shift + Enter to send)"
+              placeholder="Type a message..."
               rows={3}
             />
             <Button
+              disabled={pending}
               type="submit"
-              className="absolute bottom-3 right-3 p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 cursor-pointer transition-colors"
+              className="absolute bottom-3 right-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 cursor-pointer transition-colors"
               aria-label="Send message"
             >
+              {pending ? <TbLoader className="animate-spin" /> : <TbSend />}
               发送
             </Button>
           </div>

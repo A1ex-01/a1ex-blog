@@ -22,7 +22,6 @@ export const ParseToMarkdown = async ({
   //   )
   // )
   const html = await marked(block);
-  console.log("🐽🐽 render-message.tsx html:", html);
   // const html = await md.renderAsync('# Title\n```ts\nconsole.log("Hello, World!")\n```')
   return (
     <div

@@ -78,6 +78,9 @@ export default async function SliderLayout({ children }: SliderLayoutProps) {
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
   const { userId } = await auth();
+  if (!userId) {
+    return <main className="w-full">{children}</main>;
+  }
   return (
     <SidebarProvider className="h-full" defaultOpen={defaultOpen}>
       <Sidebar>
@@ -100,7 +103,7 @@ export default async function SliderLayout({ children }: SliderLayoutProps) {
           </Suspense>
         </SidebarFooter>
       </Sidebar>
-      <main>
+      <main className="w-full">
         <SidebarTrigger />
         {children}
       </main>

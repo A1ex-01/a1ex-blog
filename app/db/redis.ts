@@ -6,13 +6,18 @@ export interface Message extends Omit<CoreMessage, "createdAt"> {
   conversationId: string;
   createdAt: number;
 }
-const URL = process.env.AI_MESSAGES_REDIS_REDIS_URL;
+const HOST = process.env.AI_MESSAGES_REDIS_HOST;
+const PASSWORD = process.env.AI_MESSAGES_REDIS_PASSWORD;
 
-if (!URL) {
-  throw new Error("AI_MESSAGES_REDIS_REDIS_URL is not set");
+if (!HOST || !PASSWORD) {
+  throw new Error("AI_MESSAGES_REDIS_HOS or AI_MESSAGES_REDIS_PASSWORD is not set");
 }
 
-const redis = new Redis(URL);
+const redis = new Redis({
+  port: 6379, // Redis port
+  host: HOST, // Redis host
+  password: PASSWORD
+});
 
 export interface Conversation {
   id: string;

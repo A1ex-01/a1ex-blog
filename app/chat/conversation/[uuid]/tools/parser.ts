@@ -21,7 +21,6 @@ export const createMarkdownBlockGeneratorFromLlmReader = (
 
     while (true) {
       const { done, value } = await reader.read();
-      console.log("🐽🐽 parser.tsx value:", value, done);
       if (done) break;
 
       // Process each character individually

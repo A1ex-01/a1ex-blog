@@ -141,7 +141,6 @@ function List({ className, request, paginationRender }: ListProps, ref: Ref<ILis
       if (!wrapperRef?.current) return;
       const { scrollTop, scrollHeight, clientHeight } = wrapperRef.current || {};
       if (scrollTop + clientHeight >= scrollHeight) {
-        console.log("🐽🐽 List.tsx onReachBottom", hasMore, current);
         if (hasMore) {
           onRequest(
             { current: current + 1, pageSize: 10 },

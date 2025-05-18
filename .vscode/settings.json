@@ -3,5 +3,6 @@
         "i18n"
     ],
     "i18n-ally.defaultNamespace": "Basic",
-    "i18n-ally.keystyle": "nested"
+    "i18n-ally.keystyle": "nested",
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

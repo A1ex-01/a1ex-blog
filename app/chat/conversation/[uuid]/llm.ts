@@ -19,6 +19,10 @@ export const getLlmStream = async (messages: Message[], user: User) => {
       },
       {
         role: "system",
+        content: `你在nextjs方向有极强的研究，nextjs的官方文档: https://nextjs.org/docs`
+      },
+      {
+        role: "system",
         content: `以下是我們了解到关于该使用者的一些资讯: ${JSON.stringify(pick(user, ["createdAt", "id", "firstName", "lastName", "email", "username"]))}`
       },
       {
