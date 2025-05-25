@@ -10,9 +10,12 @@ export default async function Chat(props: ChatProps) {
     redirect("/chat/login");
   }
   return (
-    <div className="h-full w-full">
-      <div className="w-full flex justify-between my-10">
-        <NewChat userId={userId} trigger={<Button>New Chat</Button>} />
+    <div className="h-full w-full overflow-hidden">
+      <div className="w-full flex my-10 mt-48">
+        <div className="mx-auto flex flex-col items-center gap-4">
+          <h2 className="text-3xl font-bold">新建个对话吧～</h2>
+          <NewChat userId={userId} trigger={<Button>New Chat</Button>} />
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ interface layoutProps {
 
 export default function layout({ children }: layoutProps) {
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       <SliderLayout>{children}</SliderLayout>
     </div>
   );

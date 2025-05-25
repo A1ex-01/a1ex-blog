@@ -81,11 +81,8 @@ export const getMessageReactNode = async (
       const Wrapper = isFirstChunk ? AssistantMessageWrapper : Fragment;
 
       isFirstChunk = false;
-      const AIUser = {
-        fullName: "DeepSeek"
-      };
       return (
-        <Wrapper user={AIUser}>
+        <Wrapper>
           <ParseToMarkdown data-message-id={newMessageId.toString()} block={block} />
           <Suspense
             fallback={
@@ -153,7 +150,7 @@ export const getInitialMessagesReactNode = async (
           const Wrapper = isUser ? UserMessageWrapper : AssistantMessageWrapper;
 
           return (
-            <Wrapper key={index} user={isUser ? user : AIUser}>
+            <Wrapper key={index} user={user}>
               <div className="flex gap-4">
                 <ParseToMarkdown block={message.content} />
               </div>

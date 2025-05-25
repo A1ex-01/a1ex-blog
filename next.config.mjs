@@ -42,6 +42,10 @@ const nextConfig = {
       {
         source: "/",
         destination: "/home/1"
+      },
+      {
+        source: "/home",
+        destination: "/home/1"
       }
     ];
   }

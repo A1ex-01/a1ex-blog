@@ -80,10 +80,14 @@ export async function createMessage({
 }
 
 export async function getMessagesByConversation(conversationId: string): Promise<Message[]> {
+  const current = 1;
+  const pageSize = 10;
+  const start = (current - 1) * pageSize;
+  const end = start + pageSize - 1;
   const messageIds = await redis.lrange(`conversation:${conversationId}:messages`, 0, -1);
   if (!messageIds.length) return [];
 
-  const messages = await Promise.all(messageIds.map((id) => redis.get(`message:${id}`)));
+  const messages = await Promise.all(messageIds.slice(-10).map((id) => redis.get(`message:${id}`)));
 
   return messages.filter(Boolean).map((str) => JSON.parse(str!));
   // .sort(

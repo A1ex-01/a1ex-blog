@@ -1,8 +1,10 @@
 import HomeSwiper from "@/components/HomeSwiper";
 import { getPosts } from "@/services/common";
+import { console } from "inspector";
 import { notFound } from "next/navigation";
 
 export default async function HomeLayout({ children }: { children: React.ReactNode }) {
+  console.log("home layout");
   const getPostList = async () => {
     const res = await getPosts({
       current: 1,
