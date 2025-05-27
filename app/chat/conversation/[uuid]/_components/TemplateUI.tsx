@@ -26,7 +26,7 @@ export const ParseToMarkdown = async ({
   return (
     <div
       data-message-id={messageId}
-      className="animate-fade-in motion-safe:animate-fadeIn"
+      className="animate-fade-in motion-safe:animate-fadeIn -mb-4"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
@@ -40,8 +40,8 @@ export const UserMessageWrapper = ({
   user: User;
 }) => {
   return (
-    <div className="flex gap-4 items-start w-full">
-      <div className="bg-black flex-1 text-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 ">
+    <div className="flex gap-4 items-start w-full justify-end">
+      <div className="bg-black text-white p-3 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 ">
         <div className="flex items-start gap-3">
           <div className="markdown-content prose prose-gray prose-sm max-w-none">{children}</div>
         </div>
@@ -54,20 +54,14 @@ export const UserMessageWrapper = ({
   );
 };
 
-export const AssistantMessageWrapper = ({
-  children,
-  user
-}: {
-  children: React.ReactNode;
-  user: User;
-}) => {
+export const AssistantMessageWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex gap-4 items-start w-full">
       <Avatar>
-        <AvatarImage src={user?.imageUrl} alt={user?.fullName ?? ""} />
-        <AvatarFallback>{user?.fullName?.slice(0, 1)}</AvatarFallback>
+        <AvatarImage src={"/deepseek-color.png"} className="p-2" />
+        <AvatarFallback>D</AvatarFallback>
       </Avatar>
-      <div className="bg-[#F4F4F5] text-black p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-blue-100">
+      <div className="bg-[#F4F4F5] text-black p-3 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-blue-100">
         <div className="flex items-start gap-3">
           <div className="markdown-content markdown-body prose prose-indigo prose-sm max-w-none">
             {children}

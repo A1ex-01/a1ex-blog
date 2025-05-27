@@ -10,7 +10,7 @@ interface ProvidersProps {
 }
 export default function Providers({ children, codeFragments }: ProvidersProps) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl={"/chat"}>
       <ClientProvider>
         <CommonProvider codeFragments={codeFragments}>{children}</CommonProvider>
       </ClientProvider>
