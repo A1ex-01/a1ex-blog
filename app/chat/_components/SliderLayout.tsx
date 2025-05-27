@@ -20,7 +20,7 @@ import { Plus, User2 } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
-import SidebarConversionLink from "./SIdebarConversionLink";
+import SidebarConversionLink from "./SidebarConversionLink";
 
 interface SliderLayoutProps {
   children: React.ReactNode;

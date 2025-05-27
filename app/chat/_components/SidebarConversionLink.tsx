@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TbList } from "react-icons/tb";
 
-interface SIdebarConversionLinkProps {
+interface SidebarConversionLinkProps {
   conversation: Conversation;
 }
 
-export default function SidebarConversionLink({ conversation }: SIdebarConversionLinkProps) {
+export default function SidebarConversionLink({ conversation }: SidebarConversionLinkProps) {
   const pathname = usePathname();
   return (
     <SidebarMenuButton asChild isActive={pathname === `/chat/conversation/${conversation.id}`}>
