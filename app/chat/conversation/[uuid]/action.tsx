@@ -4,7 +4,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { currentUser, User } from "@clerk/nextjs/server";
 import { Fragment, ReactNode, Suspense } from "react";
 import { v4 as uuid } from "uuid";
-import { DeleteAllNodesWithMessageId } from "./_components/DeleteAllNodesWithMessageId";
 import {
   AssistantMessageWrapper,
   ParseToMarkdown,
@@ -73,7 +72,7 @@ export const getMessageReactNode = async (
 
         return (
           <>
-            <DeleteAllNodesWithMessageId messageId={newMessageId.toString()} />
+            {/* <DeleteAllNodesWithMessageId messageId={newMessageId.toString()} /> */}
             <ParseToMarkdown block={accumulator} />
           </>
         );
