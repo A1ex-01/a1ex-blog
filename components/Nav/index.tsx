@@ -21,9 +21,9 @@ export default function Nav(props: NavProps) {
   } as const;
 
   return (
-    <>
+    <div className="flex flex-col items-center">
       <div className="placeholder w-1 h-[60px] flex-shrink-0 z-10"></div>
-      <nav className="flex gap-10 w-full items-center justify-center fixed z-10 bg-white px-10 rounded-b-md top-0 py-0 mx-auto">
+      <nav className=" max-w-[1080px] flex gap-10 w-full items-center justify-center fixed z-10 bg-white px-10 rounded-b-md top-0 py-0 mx-auto">
         <Link href="/">
           <IconLogo size={60} />
         </Link>
@@ -47,9 +47,11 @@ export default function Nav(props: NavProps) {
             })}
           </NavigationMenuList>
         </NavigationMenu>
-        <SignedIn>
-          <UserButton showName />
-        </SignedIn>
+        <div className="ml-auto">
+          <SignedIn>
+            <UserButton showName />
+          </SignedIn>
+        </div>
         <SignedOut>
           <SignInButton mode="modal">
             <Button className="ml-auto" color="primary">
@@ -57,8 +59,7 @@ export default function Nav(props: NavProps) {
             </Button>
           </SignInButton>
         </SignedOut>
-        {/* <ScrollBall /> */}
       </nav>
-    </>
+    </div>
   );
 }

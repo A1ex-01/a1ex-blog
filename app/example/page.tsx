@@ -4,10 +4,6 @@ import Link from "next/link";
 interface ExampleProps {}
 const examples = [
   {
-    label: "home",
-    path: ""
-  },
-  {
     label: "无限分页跳转滚动",
     path: "/example/InfiniteJumpPaginationScroll"
   }
