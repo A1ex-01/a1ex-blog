@@ -6,6 +6,10 @@ const examples = [
   {
     label: "无限分页跳转滚动",
     path: "/example/InfiniteJumpPaginationScroll"
+  },
+  {
+    label: "勋章特效",
+    path: "/example/medal-rotation"
   }
 ];
 export default function Example(props: ExampleProps) {
