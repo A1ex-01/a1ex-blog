@@ -1,13 +1,16 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbMessage, TbTools } from "react-icons/tb";
 import { IconLogo } from "../icons";
 import { Button } from "../ui/button";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "../ui/navigation-menu";
 
 interface NavProps {}
 
@@ -17,13 +20,13 @@ export default function Nav(props: NavProps) {
     Home: <TbHomeFilled size={26} />,
     Tools: <TbTools size={26} />,
     Example: <PiListStarBold size={26} />,
-    Chat: <TbMessage size={26} />
+    Chat: <TbMessage size={26} />,
   } as const;
 
   return (
     <div className="flex flex-col items-center">
-      <div className="placeholder w-1 h-[60px] flex-shrink-0 z-10"></div>
-      <nav className=" max-w-[1080px] flex gap-10 w-full items-center justify-center fixed z-10 bg-white px-10 rounded-b-md top-0 py-0 mx-auto">
+      <div className="placeholder z-10 h-[60px] w-1 flex-shrink-0"></div>
+      <nav className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-b-md bg-white px-10 py-0">
         <Link href="/">
           <IconLogo size={60} />
         </Link>
@@ -31,7 +34,9 @@ export default function Nav(props: NavProps) {
           <NavigationMenuList>
             {siteConfig.navItems.map((item) => {
               const isActive =
-                item.path !== "/" ? pathname.includes(item.path) : pathname === item.path;
+                item.path !== "/"
+                  ? pathname.includes(item.path)
+                  : pathname === item.path;
               return (
                 <NavigationMenuItem key={item.name}>
                   <Link href={item.path}>
@@ -47,18 +52,7 @@ export default function Nav(props: NavProps) {
             })}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="ml-auto">
-          <SignedIn>
-            <UserButton showName />
-          </SignedIn>
-        </div>
-        <SignedOut>
-          <SignInButton mode="modal">
-            <Button className="ml-auto" color="primary">
-              Login
-            </Button>
-          </SignInButton>
-        </SignedOut>
+        <div className="ml-auto">a1ex</div>
       </nav>
     </div>
   );

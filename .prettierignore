@@ -1,23 +1,20 @@
-# Build outputs
-build
+.now/*
+*.css
+.changeset
 dist
-.next
-coverage
-
-# Dependencies
+esm/*
+public/*
+tests/*
+scripts/*
+*.config.js
+.DS_Store
 node_modules
-**/node_modules
-
-# Public assets
-public
-
-# Generated files
-.umi
-.umi-production
-
-# HTML files
-**/*.html
-
-# Dot files except .gitignore
-.*
-!/.gitignore
+coverage
+.next
+build
+!.commitlintrc.cjs
+!.lintstagedrc.cjs
+!jest.config.js
+!plopfile.js
+!react-shim.js
+!tsup.config.ts

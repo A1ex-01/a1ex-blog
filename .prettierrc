@@ -1,14 +1,6 @@
 {
-  "semi": true,
-  "singleQuote": false,
-  "printWidth": 100,
-  "tabWidth": 2,
-  "trailingComma": "none",
-  "endOfLine": "auto",
-  "bracketSpacing": true,
-  "jsxBracketSameLine": false,
-  "arrowParens": "always",
-  "plugins": [
-    "prettier-plugin-organize-imports"
-  ]
+    "plugins": [
+        "prettier-plugin-organize-imports",
+        "prettier-plugin-tailwindcss"
+    ]
 }

@@ -8,22 +8,22 @@ export const siteConfig = {
     {
       name: "首页",
       path: "/",
-      keyword: "Home"
+      keyword: "Home",
     },
     {
       name: "工具",
       path: "/tools",
-      keyword: "Tools"
+      keyword: "Tools",
     },
     {
       name: "示例",
       path: "/example",
-      keyword: "Example"
+      keyword: "Example",
     },
     {
       name: "Chat",
       path: "/chat",
-      keyword: "Chat"
-    }
-  ]
+      keyword: "Chat",
+    },
+  ],
 };
