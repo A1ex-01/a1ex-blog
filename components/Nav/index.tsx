@@ -1,7 +1,6 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { usePathname } from "@/i18n/navigation";
-import Link from "next/link";
+import { Link, usePathname } from "@/i18n/navigation";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbMessage, TbTools } from "react-icons/tb";
 import { IconLogo } from "../icons";
@@ -29,19 +28,25 @@ export default function Nav(props: NavProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="placeholder z-10 h-[60px] w-1 flex-shrink-0"></div>
-      <Card className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-t-none px-10 py-0">
+      <Card className="fixed top-0 z-10 mx-auto flex w-full max-w-6xl items-center justify-center gap-10 rounded-t-none px-10 py-0">
         <Link href="/">
           <IconLogo size={60} />
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             {siteConfig.navItems.map((item) => {
-              const isActive = pathname.includes(item.path);
+              function getIsActive() {
+                if (item.path === "/") {
+                  return pathname === "/" || pathname.includes("/home");
+                }
+
+                return pathname.includes(item.path);
+              }
 
               return (
                 <NavigationMenuItem key={item.name}>
                   <Link href={item.path}>
-                    <Button variant={isActive ? "default" : "ghost"}>
+                    <Button variant={getIsActive() ? "default" : "ghost"}>
                       <span className="mr-2">
                         {ICON_MAP[item.keyword as keyof typeof ICON_MAP]}
                       </span>

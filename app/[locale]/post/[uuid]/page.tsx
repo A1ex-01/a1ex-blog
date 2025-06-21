@@ -58,20 +58,21 @@ export default async function page({ params }: pageProps) {
   return (
     <div
       style={{ backgroundImage: `url(${post?.notionDetail?.cover_url})` }}
-      className="min-w-screen overflow-hidden bg-fixed"
+      className="min-w-screen -mt-16 overflow-hidden bg-fixed pt-16"
     >
-      <div className="wrapper mx-auto mt-10 max-w-7xl rounded-lg bg-background p-4">
+      <div className="wrapper mx-auto mt-10 max-w-6xl rounded-lg bg-background p-4">
         <div className="topshow mx-auto">
           <h2 className="text-3xl font-bold text-primary">
             {post.notionDetail?.title}
           </h2>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-foreground">
             <p>Category：</p>
-            {post.notionDetail.category?.name && (
+            {(post.notionDetail.category?.name && (
               <Badge className="my-4" color="primary">
                 {post.notionDetail?.category?.name}
               </Badge>
-            )}
+            )) ||
+              "无"}
           </div>
           <div className="tags flex gap-2">
             <p>Tags：</p>
@@ -80,11 +81,14 @@ export default async function page({ params }: pageProps) {
                 {tag.name}
               </Badge>
             ))}
+            {!post.notionDetail.tags?.length && (
+              <Badge variant={"secondary"}>无</Badge>
+            )}
           </div>
         </div>
       </div>
 
-      <article className="content mx-auto max-w-7xl py-4">
+      <article className="content mx-auto max-w-6xl py-4">
         <div className="md rounded-lg bg-background p-4">
           <Markdown
             components={{
@@ -125,7 +129,6 @@ export default async function page({ params }: pageProps) {
                 return <a {...props}>{children}</a>;
               },
             }}
-            // className={"markdown-body round-lg p-4"}
           >
             {post.notionDetail?.content}
           </Markdown>

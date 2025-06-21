@@ -1,6 +1,6 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { IPost } from "@/services/types";
 import { useRouter } from "next/navigation";
 import {} from "react-icons";
@@ -14,6 +14,7 @@ export default function InterceptingModal({ post }: InterceptingModalProps) {
   const router = useRouter();
   return (
     <Drawer open>
+      <DrawerTitle>{post.notionDetail.title}</DrawerTitle>
       <DrawerContent>
         <div className="min-w-screen relative h-[90vh] overflow-y-scroll">
           <div

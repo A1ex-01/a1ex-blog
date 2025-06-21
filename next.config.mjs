@@ -7,6 +7,18 @@ const nextConfig = {
     unoptimized: true,
   },
   devIndicators: false,
+  async rewrites() {
+    return [
+      {
+        source: "/zh",
+        destination: "/zh/home/1",
+      },
+      {
+        source: "/zh/home",
+        destination: "/zh/home/1",
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

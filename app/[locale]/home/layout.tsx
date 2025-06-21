@@ -1,6 +1,6 @@
+import Footer from "@/components/footer";
 import HomeSwiper from "@/components/HomeSwiper";
 import { getPosts } from "@/services/common";
-import { console } from "inspector";
 import { notFound } from "next/navigation";
 
 export default async function HomeLayout({
@@ -8,7 +8,6 @@ export default async function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log("home layout");
   const getPostList = async () => {
     const res = await getPosts({
       current: 1,
@@ -35,6 +34,8 @@ export default async function HomeLayout({
       </div>
 
       {children}
+
+      <Footer />
     </div>
   );
 }

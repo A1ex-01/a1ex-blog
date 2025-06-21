@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import Nav from "@/components/Nav";
 import { getMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
@@ -64,7 +63,6 @@ export default async function RootLayout({
             <Providers user={user}>
               <Nav />
               {children}
-              <Footer />
             </Providers>
           </NextIntlClientProvider>
         </div>

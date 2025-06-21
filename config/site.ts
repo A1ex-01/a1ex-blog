@@ -11,14 +11,14 @@ export const siteConfig = {
       keyword: "Home",
     },
     {
-      name: "工具",
-      path: "/tools",
-      keyword: "Tools",
-    },
-    {
       name: "示例",
       path: "/example",
       keyword: "Example",
+    },
+    {
+      name: "工具",
+      path: "/tools",
+      keyword: "Tools",
     },
     {
       name: "Chat",
