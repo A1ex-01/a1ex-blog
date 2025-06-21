@@ -8,6 +8,7 @@ import { IconLogo } from "../icons";
 import LocaleSwitcher from "../locale-switcher";
 import { ThemeSwitcher } from "../theme-switcher";
 import { Button } from "../ui/button";
+import { Card } from "../ui/card";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -28,7 +29,7 @@ export default function Nav(props: NavProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="placeholder z-10 h-[60px] w-1 flex-shrink-0"></div>
-      <nav className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-b-md bg-background px-10 py-0">
+      <Card className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-t-none px-10 py-0">
         <Link href="/">
           <IconLogo size={60} />
         </Link>
@@ -57,7 +58,7 @@ export default function Nav(props: NavProps) {
           <ThemeSwitcher />
         </div>
         <div>a1ex</div>
-      </nav>
+      </Card>
     </div>
   );
 }

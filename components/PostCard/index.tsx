@@ -6,12 +6,10 @@ import dayjs from "dayjs";
 // import TagIcon from '@/assets/icon/tag.svg'
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { Card } from "../ui/card";
 export default function PostCard({ post }: { post: IPost }) {
   return (
-    <div
-      key={post.id}
-      className={"flex items-center rounded-md bg-background shadow-md"}
-    >
+    <Card key={post.id} className={"flex items-center rounded-md"}>
       <div className="relative w-full">
         <img
           className="h-[266px] w-full rounded-lg object-cover"
@@ -73,6 +71,6 @@ export default function PostCard({ post }: { post: IPost }) {
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
