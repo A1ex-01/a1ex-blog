@@ -1,10 +1,12 @@
 "use client";
 import { siteConfig } from "@/config/site";
+import { usePathname } from "@/i18n/navigation";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbMessage, TbTools } from "react-icons/tb";
 import { IconLogo } from "../icons";
+import LocaleSwitcher from "../locale-switcher";
+import { ThemeSwitcher } from "../theme-switcher";
 import { Button } from "../ui/button";
 import {
   NavigationMenu,
@@ -26,17 +28,15 @@ export default function Nav(props: NavProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="placeholder z-10 h-[60px] w-1 flex-shrink-0"></div>
-      <nav className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-b-md bg-white px-10 py-0">
+      <nav className="fixed top-0 z-10 mx-auto flex w-full max-w-[1080px] items-center justify-center gap-10 rounded-b-md bg-background px-10 py-0">
         <Link href="/">
           <IconLogo size={60} />
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             {siteConfig.navItems.map((item) => {
-              const isActive =
-                item.path !== "/"
-                  ? pathname.includes(item.path)
-                  : pathname === item.path;
+              const isActive = pathname.includes(item.path);
+
               return (
                 <NavigationMenuItem key={item.name}>
                   <Link href={item.path}>
@@ -52,7 +52,11 @@ export default function Nav(props: NavProps) {
             })}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="ml-auto">a1ex</div>
+        <div className="ml-auto flex items-center gap-4">
+          <LocaleSwitcher />
+          <ThemeSwitcher />
+        </div>
+        <div>a1ex</div>
       </nav>
     </div>
   );

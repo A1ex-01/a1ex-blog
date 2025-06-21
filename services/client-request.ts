@@ -89,7 +89,7 @@ class ClientRequest {
     method,
     headers = {},
   }: Props): Promise<T> {
-    const remoteUrl = process.env.NEXT_PUBLIC_BASEURL;
+    const remoteUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const localUrl = "";
     const baseUrl = url.includes("mock") ? localUrl : remoteUrl;
     const req = this.interceptorsRequest({
