@@ -1,8 +1,10 @@
 "use client";
 import { ThemeProvider } from "@/components/theme-provider";
 import { IUser } from "@/types/user";
+import { ClerkProvider } from "@clerk/nextjs";
 import { useMount } from "ahooks";
 import { SessionProvider } from "next-auth/react";
+import { useTheme } from "next-themes";
 import React from "react";
 import { UserProvider } from "./user-provider";
 
@@ -23,16 +25,20 @@ export default function Providers({ children, user, webview }: IProviders) {
   useMount(() => {
     vhCheck();
   });
+
+  const { theme } = useTheme();
   return (
-    <SessionProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <UserProvider user={user}>{children}</UserProvider>
-      </ThemeProvider>
-    </SessionProvider>
+    <ClerkProvider afterSignOutUrl={"/chat"}>
+      <SessionProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <UserProvider user={user}>{children}</UserProvider>
+        </ThemeProvider>
+      </SessionProvider>
+    </ClerkProvider>
   );
 }

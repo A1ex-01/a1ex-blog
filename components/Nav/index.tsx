@@ -1,6 +1,7 @@
 "use client";
 import { siteConfig } from "@/config/site";
 import { Link, usePathname } from "@/i18n/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { PiListStarBold } from "react-icons/pi";
 import { TbHomeFilled, TbMessage, TbTools } from "react-icons/tb";
 import { IconLogo } from "../icons";
@@ -62,7 +63,16 @@ export default function Nav(props: NavProps) {
           <LocaleSwitcher />
           <ThemeSwitcher />
         </div>
-        <div>a1ex</div>
+        <div>
+          <SignedIn>
+            <UserButton showName />
+          </SignedIn>
+        </div>
+        <SignedOut>
+          <SignInButton mode="modal">
+            <Button color="primary">Login</Button>
+          </SignInButton>
+        </SignedOut>
       </Card>
     </div>
   );
