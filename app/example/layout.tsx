@@ -1,3 +1,3 @@
 export default function ExampleLayout({ children }: { children: React.ReactNode }) {
-  return <div className="max-w-5xl mx-auto py-10">{children}</div>;
+  return <div className="max-w-5xl mx-auto py-4 h-full ">{children}</div>;
 }
